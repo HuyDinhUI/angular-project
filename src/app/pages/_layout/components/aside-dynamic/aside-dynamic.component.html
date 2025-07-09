@@ -1,0 +1,57 @@
+<div
+  id="sidebar"
+  class="sidebar bg-gradient-to-b from-blue-700 to-purple-500 text-white h-full w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 z-50 transition duration-200 ease-in-out"
+>
+  <div class="flex items-center justify-between px-4">
+    <div class="items-center space-x-2">
+      <p class="font-bold text-2xl">The Ordinary</p>
+      <span class="opacity-70">Admistrator</span>
+    </div>
+    <button
+      id="closeSidebar"
+      class="md:hidden p-2 rounded-md hover:bg-purple-800"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <nav class="mt-10">
+    <a *ngFor="let item of menuConfig.items"
+      routerLink="{{item.page}}" 
+      routerLinkActive="active"
+      id="dashboard-link"
+      class="sidebar-link flex items-center px-4 py-3 rounded-md cursor-pointer"
+    >
+      <i class="fas fa-tachometer-alt mr-3 w-5 text-center"></i>
+      <span [translate]="item.translate">{{item.title}}</span>
+    </a>
+    
+
+    <div
+      class="sidebar-link flex items-center px-4 py-3 rounded-md cursor-pointer"
+    >
+      <i class="fas fa-cog mr-3 w-5"></i>
+      <span>Setting</span>
+    </div>
+  </nav>
+
+  <div class="px-4 mt-auto pb-5">
+    <div class="flex items-center space-x-3 mt-15">
+      <img
+        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48Y2lyY2xlIGN4PSIxMjgiIGN5PSIxMjgiIHI9IjEyMCIgZmlsbD0iI2U2ZTZlNiIvPjxjaXJjbGUgY3g9IjEyOCIgY3k9IjExNSIgcj0iMzUiIGZpbGw9IiM5OTkiLz48cGF0aCBkPSJNMTg4LDIwNGEzMCwzMCwwLDAsMC0uODItNyw2MCw2MCwwLDAsMC01OS4xOC00M2gtLjE4YTYwLjA5LDYwLjA5LDAsMCwwLTU5LDQzLDMwLDMwLDAsMCwwLS44Miw3WiIgZmlsbD0iIzk5OSIvPjwvc3ZnPg=="
+        alt="Admin"
+        class="w-10 h-10 rounded-full"
+      />
+      <div>
+        <p class="text-sm font-medium">Admin</p>
+        <p class="text-xs opacity-70"></p>
+      </div>
+    </div>
+    <div
+      class="mt-6 flex items-center text-sm hover:bg-purple-100/10 p-2 rounded-md cursor-pointer"
+    >
+      <i class="fas fa-sign-out-alt mr-2"></i>
+      <a routerLink="/auth/logout">Log out</a>
+    </div>
+  </div>
+</div>

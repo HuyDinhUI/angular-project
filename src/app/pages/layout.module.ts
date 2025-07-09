@@ -6,9 +6,10 @@ import {RouterOutlet} from '@angular/router'
 import { DashboardComponent } from './admin/Dashboard/dashboard.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { TopHeaderComponent } from './_layout/components/top-header/top-header.component';
+import { AsideDynamicComponent } from './_layout/components/aside-dynamic/aside-dynamic.component';
 
 @NgModule({
-  declarations: [LayoutComponent,SidebarComponent],
+  declarations: [LayoutComponent,SidebarComponent, AsideDynamicComponent],
   imports: [
     CommonModule,
     RouterOutlet,
