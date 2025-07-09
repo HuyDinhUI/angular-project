@@ -1,0 +1,82 @@
+<div class="main-content flex-1 relative flex flex-col overflow-hidden">
+    <top-header [title]="'General'"></top-header>
+    <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+      <div id="dashboard-section" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="card bg-white rounded-xl shadow-sm p-6 border-l-4 border-purple-500"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-sm text-gray-500 font-medium">Revenue</p>
+                <p class="text-2xl font-bold text-gray-800">
+                  {{revenue}}
+                </p>
+                <p class="text-xs text-green-500 mt-2">
+                  <i class="fas fa-arrow-up mr-1"></i>12% from last month
+                </p>
+              </div>
+              <div class="bg-purple-100 p-3 rounded-full">
+                <i class="fas fa-wallet text-purple-500 text-xl"></i>
+              </div>
+            </div>
+          </div>
+    
+          <div
+            class="card bg-white rounded-xl shadow-sm p-6 border-l-4 border-blue-500"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-sm text-gray-500 font-medium">Orders</p>
+                <p class="text-2xl font-bold text-gray-800">{{orders}}</p>
+                <p class="text-xs text-green-500 mt-2">
+                  <i class="fas fa-arrow-up mr-1"></i>5% from last month
+                </p>
+              </div>
+              <div class="bg-blue-100 p-3 rounded-full">
+                <i class="fas fa-shopping-bag text-blue-500 text-xl"></i>
+              </div>
+            </div>
+          </div>
+    
+          <div
+            class="card bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-500"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-sm text-gray-500 font-medium">Customers</p>
+                <p class="text-2xl font-bold text-gray-800">
+                 {{customers}}
+                </p>
+                <p class="text-xs text-green-500 mt-2">
+                  <i class="fas fa-arrow-up mr-1"></i>15% from last month
+                </p>
+              </div>
+              <div class="bg-green-100 p-3 rounded-full">
+                <i class="fas fa-users text-green-500 text-xl"></i>
+              </div>
+            </div>
+          </div>
+    
+          <div
+            class="card bg-white rounded-xl shadow-sm p-6 border-l-4 border-yellow-500"
+          >
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-sm text-gray-500 font-medium">Products</p>
+                <p class="text-2xl font-bold text-gray-800">
+                  {{products}}
+                </p>
+                <p class="text-xs text-yellow-500 mt-2">
+                  <i class="fas fa-arrow-right mr-1"></i>Normal
+                </p>
+              </div>
+              <div class="bg-yellow-100 p-3 rounded-full">
+                <i class="fas fa-box text-yellow-500 text-xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+</div>
