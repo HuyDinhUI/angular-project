@@ -52,7 +52,7 @@ export class MenuConfigService {
     };
     // let arr = [];
     dt.forEach((item:any, index:any) => {
-      console.log(item.Child)
+      
       if (item.Child.length > 0) {
         const title = 'MAINMENU.' + item.Title;
         let _module:any = {
@@ -65,7 +65,7 @@ export class MenuConfigService {
         };
         
         if (item.Child.length > 0) {
-          console.log("da vao")
+          
           _module['bullet'] = 'dot';
           _module['submenu'] = [];
           item.Child.forEach((itemE:any, indexE:any) => {
@@ -78,10 +78,10 @@ export class MenuConfigService {
         }
         config.aside.items.push(_module);
       } else {
-        console.log("da vao")
-        const title = 'MAINMENU.' + item.Title;
+       
+        const title = item.Summary;
         console.log(title)
-        console.log(this.translate.instant(title))
+        console.log(this.translate.get(title).subscribe(translate => console.log(translate)))
         let _module = {
           title: this.translate.instant(title),
           root: item.Child ? item.Child.length == 0 : true,

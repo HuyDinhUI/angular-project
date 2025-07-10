@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LayoutComponent} from './_layout/layout.component'
-import { DashboardComponent } from './admin/Dashboard/dashboard.component';
-import { ProductManagementComponent } from './admin/ProductManagement/ProductManagement.component';
+
+import { CustomersManagementComponent } from './admin/CustomersManagement/CustomersManagement.component';
 
 const routes: Routes = [
   {
@@ -10,15 +10,12 @@ const routes: Routes = [
     component: LayoutComponent, 
     children: [
       {
-        path: 'dashboard',
-        component:DashboardComponent
-      },
-      {
-        path: 'Management/Product',
-        component:ProductManagementComponent
+        path: 'Management/CustomerManagement',
+        loadChildren:() => import("./admin/CustomersManagement/CustomersManagement.module").then((m) => m.CustomerManagementModule)
+          
       },
 
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+      { path: '', redirectTo: 'Management/CustomerManagement', pathMatch: 'full' }
     ]
   }
 ];

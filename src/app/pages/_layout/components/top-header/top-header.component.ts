@@ -6,6 +6,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'top-header',
   templateUrl: './top-header.component.html',
   styleUrl: './top-header.component.scss',
+  standalone:false
 })
 
 export class TopHeaderComponent {

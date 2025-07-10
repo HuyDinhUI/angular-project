@@ -7,6 +7,7 @@ import { LayoutService, DynamicAsideMenuService } from '../../../../_metronic/co
 @Component({
   selector: 'app-aside-dynamic',
   templateUrl: './aside-dynamic.component.html',
+  styleUrl: './aside-dynamic.component.scss',
   standalone:false
 })
 export class AsideDynamicComponent implements OnInit, OnDestroy {
