@@ -32,10 +32,10 @@
           [class.spinner]="loadingDateFilter$ | async"
           (click)="filterDaKhoa()"
           style="
-            
             color: #3c096c;
             border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+              rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
           "
           mat-raised-button
           class="ja_btn_dangsudung"
@@ -47,10 +47,10 @@
           [class.spinner]="loadingDateFilter$ | async"
           (click)="filterDangSuDung()"
           style="
-            
             color: #3699ff;
             border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+              rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
           "
           mat-raised-button
           class="ja_btn_dangsudung"
@@ -62,10 +62,10 @@
           [class.spinner]="loadingDateFilter$ | async"
           (click)="filterSapHetHan()"
           style="
-            
             color: #1bc5bd;
             border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+              rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
           "
           mat-raised-button
           class="ja_btn_saphethan"
@@ -77,7 +77,8 @@
           [class.spinner]="loadingDateFilter$ | async"
           (click)="filterDaHetHan()"
           style="
-            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+              rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
             color: #ff4d6d;
             border-radius: 10px;
           "
@@ -90,7 +91,12 @@
         <button
           [class.spinner]="loadingDateFilter$ | async"
           (click)="filterAll()"
-          style="color: #16a850;box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;border-radius:10px"
+          style="
+            color: #16a850;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+              rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            border-radius: 10px;
+          "
           mat-raised-button
           class=""
         >
@@ -100,19 +106,21 @@
       </div>
     </div>
     <!-- body -->
-    <div class="bg-white p-6 rounded-xl shadow-sm ">
-      <div
-        class="table-responsive angular-bootstrap-table"
-        [ngStyle]="{ height: getHeight() }"
-      >
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+      <div class="table-responsive angular-bootstrap-table">
         <table
           mat-table
-          class="table-products min-w-full divide-y divide-gray-200"
+          class="table-customers min-w-full h-full divide-y divide-gray-200"
           [dataSource]="(customerManagementService.items$ | async) ?? []"
         >
+          
           <ng-container matColumnDef="thongtinkhachhang">
             <thead>
-              <th *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                *matHeaderCellDef
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                style="position: relative !important;"
+              >
                 <span>{{
                   "customermanagement.thongtinkhachhang" | translate
                 }}</span>
@@ -125,16 +133,23 @@
               </th>
             </thead>
             <tbody>
-              <td mat-cell *matCellDef="let r" [routerLink]="['info/', r.RowID]" class="px-6 py-4 whitespace-nowrap">
+              <td
+                mat-cell
+                *matCellDef="let r"
+                [routerLink]="['info/', r.RowID]"
+                class=""
+              >
                 <div class="row">
-                  <span style="font-weight: 600"> {{ r.Code }}: &nbsp;</span>
-                  <span>{{ r.CompanyName }} &nbsp;- &nbsp;</span>
-                  <span> {{ getDate(r.RegisterDate) }}</span>
+                  <span>#{{r.Code}}</span>
+                  <br>
+                  <span style="font-weight: 600">
+                    {{ r.RegisterName }}
+                  </span>
                 </div>
                 <div class="row">
-                  <span style="font-weight: 600">
-                    {{ r.RegisterName }}:&nbsp;
-                  </span>
+                  <span>{{ r.CompanyName }} &nbsp;- &nbsp;</span>
+                  <span> {{ getDate(r.RegisterDate) }}</span>
+                  <br />
                   <span style="font-style: italic"
                     >{{
                       "customermanagement.taoboijeecustomer" | translate
@@ -147,22 +162,34 @@
           </ng-container>
 
           <ng-container matColumnDef="thongtinnguoihotro">
-            <th *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th
+              *matHeaderCellDef
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              style="position: relative !important;"
+            >
               <span>{{
                 "customermanagement.thongtinnguoihotro" | translate
               }}</span>
             </th>
-            <td mat-cell *matCellDef="let r" class="px-6 py-4 whitespace-nowrap">
-              <div style="cursor: pointer">
+            <td
+              mat-cell
+              *matCellDef="let r"
+              class="px-6 py-4 whitespace-nowrap"
+            >
+              <div style="cursor: pointer; text-align: center">
                 <span>
-                  <mat-icon>person_add</mat-icon>
+                  <mat-icon style="color: rgb(40, 40, 40)">person_add</mat-icon>
                 </span>
               </div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="dienthoainguoidaidien">
-            <th *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th
+              *matHeaderCellDef
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              style="position: relative !important;"
+            >
               <span>{{
                 "customermanagement.dienthoainguoidaidien" | translate
               }}</span>
@@ -179,7 +206,11 @@
           </ng-container>
 
           <ng-container matColumnDef="thongtinsudung">
-            <th *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th
+              *matHeaderCellDef
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              style="position: relative !important;"
+            >
               <span>{{ "customermanagement.thongtinsudung" | translate }}</span>
             </th>
             <td mat-cell *matCellDef="let r">
@@ -193,7 +224,11 @@
           </ng-container>
 
           <ng-container matColumnDef="ThaoTac">
-            <th *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th
+              *matHeaderCellDef
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              style="position: relative !important;"
+            >
               <span>{{ "COMMOM.THAOTAC" | translate }}</span>
             </th>
             <td mat-cell *matCellDef="let item; let vi = index">
@@ -203,7 +238,7 @@
                 #trigger="matMenuTrigger"
               >
                 <!-- <mat-icon>more_horiz</mat-icon> -->
-                <i class="flaticon-more-v2 color_more"></i>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
               </button>
               <mat-menu #menu="matMenu">
                 <button

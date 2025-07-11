@@ -19,6 +19,7 @@ import { AppListDTO, CustomerModel } from '../Model/customer-management.model';
 @Component({
   selector: 'app-customer-management-edit-dialog',
   templateUrl: './customer-management-edit-dialog.component.html',
+  styleUrl:'./customer-management-edit-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })

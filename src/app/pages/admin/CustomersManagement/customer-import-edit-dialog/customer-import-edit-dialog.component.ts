@@ -19,6 +19,7 @@ import { PaginatorState } from '../../../../_metronic/shared/crud-table'
 @Component({
   selector: 'app-customer-import-edit-dialog',
   templateUrl: './customer-import-edit-dialog.component.html',
+  styleUrl:'./customer-import-edit-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })
