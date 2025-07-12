@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { LayoutUtilsService } from './pages/admin/_core/utils/layout-utils.service';
 import { JeeCustomerModule } from './pages/jee-customer.module';
 import { LayoutRoutingModule } from './pages/layout-routing.module';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 export const appConfig: ApplicationConfig = {
@@ -31,6 +31,6 @@ export const appConfig: ApplicationConfig = {
     LayoutUtilsService,
     importProvidersFrom(JeeCustomerModule),
     importProvidersFrom(LayoutRoutingModule),
-    DatePipe
+    DatePipe,
   ]
 };

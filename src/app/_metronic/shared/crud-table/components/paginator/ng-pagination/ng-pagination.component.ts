@@ -132,6 +132,7 @@ export class NgPaginationPrevious {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'role': 'navigation' },
   templateUrl: './ng-pagination.component.html',
+  styleUrl:'../paginator.component.scss',
   standalone:false
 
 })
@@ -139,12 +140,12 @@ export class NgPagination implements OnChanges {
   pageCount = 0;
   pages: number[] = [];
 
-  @ContentChild(NgPaginationEllipsis, { static: false }) tplEllipsis!: NgPaginationEllipsis;
-  @ContentChild(NgPaginationFirst, { static: false }) tplFirst!: NgPaginationFirst;
-  @ContentChild(NgPaginationLast, { static: false }) tplLast!: NgPaginationLast;
-  @ContentChild(NgPaginationNext, { static: false }) tplNext!: NgPaginationNext;
-  @ContentChild(NgPaginationNumber, { static: false }) tplNumber!: NgPaginationNumber;
-  @ContentChild(NgPaginationPrevious, { static: false }) tplPrevious!: NgPaginationPrevious;
+  @ContentChild(NgPaginationEllipsis, { static: false }) tplEllipsis?: NgPaginationEllipsis;
+  @ContentChild(NgPaginationFirst, { static: false }) tplFirst?: NgPaginationFirst;
+  @ContentChild(NgPaginationLast, { static: false }) tplLast?: NgPaginationLast;
+  @ContentChild(NgPaginationNext, { static: false }) tplNext?: NgPaginationNext;
+  @ContentChild(NgPaginationNumber, { static: false }) tplNumber?: NgPaginationNumber;
+  @ContentChild(NgPaginationPrevious, { static: false }) tplPrevious?: NgPaginationPrevious;
 
   /**
    * If `true`, pagination links will be disabled.

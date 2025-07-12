@@ -1,30 +1,16 @@
-<!-- <ng-template #first>
-  <i
-    class="ki ki-bold-double-arrow-back icon-xs"
-    aria-hidden="true"
-    i18n="@@ng.pagination.first"
-  ></i>
+<ng-template #first>
+  <i class="fa-solid fa-chevron-left"></i>
+  <i class="fa-solid fa-chevron-left"></i>
 </ng-template>
 <ng-template #previous>
-  <i
-    class="ki ki-bold-arrow-back icon-xs"
-    aria-hidden="true"
-    i18n="@@ng.pagination.previous"
-  ></i>
+  <i class="fa-solid fa-chevron-left"></i>
 </ng-template>
 <ng-template #next>
-  <i
-    class="ki ki-bold-arrow-next icon-xs"
-    aria-hidden="true"
-    i18n="@@ng.pagination.next"
-  ></i>
+  <i class="fa-solid fa-chevron-right"></i>
 </ng-template>
 <ng-template #last>
-  <i
-    aria-hidden="true"
-    i18n="@@ng.pagination.last"
-    class="ki ki-bold-double-arrow-next icon-xs"
-  ></i>
+  <i class="fa-solid fa-chevron-right"></i>
+  <i class="fa-solid fa-chevron-right"></i>
 </ng-template>
 <ng-template #ellipsis>...</ng-template>
 <ng-template #defaultNumber let-page let-currentPage="currentPage">
@@ -83,7 +69,7 @@
   </a>
   <a
     *ngIf="!isEllipsis(pageNumber)"
-    class="btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1"
+    class="bg-gray-200 text-center mr-2 my-1 px-2"
     (click)="selectPage(pageNumber); $event.preventDefault()"
     [attr.tabindex]="disabled ? '-1' : null"
     [attr.aria-disabled]="disabled ? 'true' : null"
@@ -136,4 +122,4 @@
       currentPage: page
     }"
   ></ng-template>
-</a> -->
+</a>

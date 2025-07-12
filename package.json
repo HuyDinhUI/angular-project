@@ -43,6 +43,7 @@
     "@angular/build": "^20.0.4",
     "@angular/cli": "^20.0.4",
     "@angular/compiler-cli": "^20.0.0",
+    "@angular/localize": "^20.0.5",
     "@types/jasmine": "~5.1.0",
     "@types/lodash": "^4.17.20",
     "@types/object-path": "^0.11.4",
@@ -52,6 +53,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.2"
+    "typescript": "~5.8.2",
+    "vite-plugin-angular": "^0.0.0"
   }
 }

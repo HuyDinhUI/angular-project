@@ -3,11 +3,13 @@ import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/cor
 import { timeout, delay } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'm-action-natification',
   templateUrl: './action-notification.component.html',
   changeDetection: ChangeDetectionStrategy.Default,
+  imports:[CommonModule]
 })
 export class ActionNotificationComponent implements OnInit {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {}

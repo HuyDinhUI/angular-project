@@ -25,6 +25,7 @@ const COLOR_HETHIEULUC = '#f64e60';
 @Component({
   selector: 'app-customer-thong-tin-list',
   templateUrl: './customer-thong-tin-list.component.html',
+  styleUrl:'./customer-thong-tin-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })

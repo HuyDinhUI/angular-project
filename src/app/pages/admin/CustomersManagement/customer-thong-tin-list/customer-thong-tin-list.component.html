@@ -1,0 +1,156 @@
+<div
+  class="main-content flex-1 relative flex flex-col overflow-hidden h-[100vh]"
+>
+  <div class="card-header p-4">
+    <div class="card-title text-2xl font-[500] text-green-700">
+      <span class="card-label" *ngIf="customerModel"
+        >{{ customerModel.CompanyName }}
+      </span>
+    </div>
+    <div class="card-toolbar absolute top-5 right-5">
+      <button mat-raised-button class="ja_btn-back" (click)="goBack()">
+        {{ "COMMOM.TROLAI" | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="card-header px-4">
+    <div class="card-title">
+      <span class="card-label"
+        >{{ "CUSTOMER_INFO.NGAYDANGKI" | translate }}
+        <span *ngIf="customerModel" style="font-weight: 900">
+          {{ format_date(customerModel.RegisterDate) }}</span
+        >
+      </span>
+    </div>
+  </div>
+  <!-- body -->
+  <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
+    <div class="card-body bg-white p-6 rounded-xl shadow-sm mt-5">
+      <div class="table-responsive angular-bootstrap-table">
+        <table
+          mat-table
+          class="table-customers min-w-full h-full divide-y divide-gray-200"
+          [dataSource]="(customerThongTinService.items$ | async) ?? []"
+        >
+          <ng-container matColumnDef="stt">
+            <th
+              *matHeaderCellDef
+              style="position: relative !important"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              <span>STT</span>
+              <app-sort-icon
+                column="stt"
+                [activeColumn]="sorting.column"
+                [activeDirection]="sorting.direction"
+                (sort)="sort($event)"
+              ></app-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let r; let i = index">
+              <span>{{ i + 1 }}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tenungdung">
+            <th
+              *matHeaderCellDef
+              style="position: relative !important"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              <span>{{ "CUSTOMER_INFO.TENUNGDUNG" | translate }}</span>
+              <app-sort-icon
+                column="tenungdung"
+                [activeColumn]="sorting.column"
+                [activeDirection]="sorting.direction"
+                (sort)="sort($event)"
+              ></app-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let r">
+              <span>{{ r.AppName }}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ngayhethan">
+            <th
+              *matHeaderCellDef
+              style="position: relative !important"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              <span>{{ "CUSTOMER_INFO.NGAYHETHAN" | translate }}</span>
+              <app-sort-icon
+                column="ngayhethan"
+                [activeColumn]="sorting.column"
+                [activeDirection]="sorting.direction"
+                (sort)="sort($event)"
+              ></app-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let r">
+              <span>{{ r.EndDate }}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tinhtrang">
+            <th
+              *matHeaderCellDef
+              style="position: relative !important"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              <span>{{ "PARTNERMANAGEMENT.TINHTRANG" | translate }}</span>
+              <app-sort-icon
+                column="tinhtrang"
+                [activeColumn]="sorting.column"
+                [activeDirection]="sorting.direction"
+                (sort)="sort($event)"
+              ></app-sort-icon>
+            </th>
+            <td mat-cell *matCellDef="let r">
+              <span class="switch switch-icon">
+                <label>
+                  <input
+                    (click)="updateStatus(r)"
+                    type="checkbox"
+                    [(ngModel)]="r.Status"
+                  />
+                  <span></span>
+                </label>
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ghichu">
+            <th
+              *matHeaderCellDef
+              style="position: relative !important"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              <span>{{ "COMMOM.GHICHU" | translate }}</span>
+            </th>
+            <td mat-cell *matCellDef="let r">
+              <span>{{ r.Note }}</span>
+            </td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="row.highlighted = !row.highlighted"
+            [ngClass]="{ hovered: row.hovered, highlighted: row.highlighted }"
+            (mouseover)="row.hovered = true"
+            (mouseout)="row.hovered = false"
+          ></tr>
+        </table>
+      </div>
+      <!-- end: Table -->
+      <app-paginator
+        class="d-flex justify-content-between align-items-center flex-wrap"
+        [paginator]="paginator"
+        [isLoading]="isLoading"
+        (paginate)="paginate($event)"
+      ></app-paginator>
+    </div>
+  </div>
+</div>
