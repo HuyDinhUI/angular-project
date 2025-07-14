@@ -18,6 +18,7 @@ import { AppListDTO, CustomerAppAddNumberStaffModel, CustomerAppDTO, CustomerMod
 @Component({
   selector: 'app-customer-add-number-staff-dialog',
   templateUrl: './customer-add-number-staff-dialog.component.html',
+  styleUrl:'./customer-add-number-staff-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })

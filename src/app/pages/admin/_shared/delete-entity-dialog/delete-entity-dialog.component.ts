@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'm-delete-entity-dialog',
   templateUrl: './delete-entity-dialog.component.html',
+  imports:[CommonModule]
 })
 export class DeleteEntityDialogComponent implements OnInit {
   viewLoading: boolean = false;

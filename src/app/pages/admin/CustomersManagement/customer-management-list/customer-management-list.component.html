@@ -176,7 +176,7 @@
               *matCellDef="let r"
               class="px-6 py-4 whitespace-nowrap"
             >
-              <div style="cursor: pointer; text-align: center">
+              <div style="cursor: pointer; text-align: center;padding-right:50px">
                 <span>
                   <mat-icon style="color: rgb(40, 40, 40)">person_add</mat-icon>
                 </span>
@@ -231,7 +231,7 @@
             >
               <span>{{ "COMMOM.THAOTAC" | translate }}</span>
             </th>
-            <td mat-cell *matCellDef="let item; let vi = index">
+            <td mat-cell *matCellDef="let item; let vi = index" style="text-align: center;padding-right:20px">
               <button
                 mat-icon-button
                 [matMenuTriggerFor]="menu"
@@ -344,7 +344,7 @@
       </div>
       <!-- end: Table -->
       <app-paginator
-        class="d-flex justify-content-between align-items-center flex-wrap"
+        class="flex justify-between items-center flex-wrap"
         [paginator]="paginator"
         [isLoading]="isLoading"
         (paginate)="paginate($event)"

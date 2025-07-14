@@ -1,20 +1,20 @@
-<!-- <div class="modal-content">
-  <div class="modal-header">
+<div class="modal-content p-4">
+  <div class="modal-header py-5 relative border-b border-gray-200">
     <div class="modal-title h4" id="example-modal-sizes-title-lg">
-      <span class="dialog-title">{{'CUSTOMER_ADDNUMBERSTAFF.TITLE' | translate}}</span>
+      <span class="dialog-title text-2xl text-green-700 font-bold">{{'CUSTOMER_ADDNUMBERSTAFF.TITLE' | translate}}</span>
     </div>
-    <div class="modal-title" style="display: inline;">
+    <div class="modal-title absolute right-5 top-5">
       <button [disabled]="isLoadingSubmit$ | async" [class.spinner]="isLoadingSubmit$ | async" mat-raised-button
         style="float: right; margin: 0" class="ja_btn-addnew  " (click)="onSubmit()">{{'COMMOM.LUU' |
         translate}}</button>
-      <button mat-raised-button style="float: right; margin: 0; margin-right: 12px;" class="ja_btn-goback "
+      <button mat-raised-button style="float: right; margin: 0; margin-right: 12px;box-shadow:none;border-radius:10px;" class="ja_btn-goback "
         (click)="goBack()">{{'COMMOM.TROLAI' | translate}}</button>
     </div>
   </div>
   <div class="card-body" style="padding: 0 !important;">
     <div class="table-responsive angular-bootstrap-table">
       <table mat-table class=" table table-head-custom table-vertical-center overflow-hidden "
-        [dataSource]="appCustomerCodes$ | async">
+        [dataSource]="(appCustomerCodes$ | async) ?? []">
         <ng-container matColumnDef="tenapp">
           <th *matHeaderCellDef>
             <span>{{'customermanagement.tenapp' | translate}}</span>
@@ -43,7 +43,7 @@
           <td mat-cell *matCellDef="let r; let i = index">
             <mat-form-field class="example-full-width">
               <input [formControl]="soluongnhansuArrayFrom[i]" class="input-batbuoc mat-focused required" required
-                matInput type="text" disabled>
+                matInput type="text">
             </mat-form-field>
           </td>
         </ng-container>
@@ -63,4 +63,4 @@
       </table>
     </div>
   </div>
-</div> -->
+</div>

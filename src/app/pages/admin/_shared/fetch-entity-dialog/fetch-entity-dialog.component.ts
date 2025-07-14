@@ -1,10 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
  
 
 @Component({
 	selector: 'm-fetch-entity-dialog',
-	templateUrl: './fetch-entity-dialog.component.html'
+	templateUrl: './fetch-entity-dialog.component.html',
+	imports:[CommonModule,MatDialogModule]
 })
 export class FetchEntityDialogComponent {
 	constructor(

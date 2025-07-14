@@ -20,6 +20,7 @@ import { CustomerThongTinService } from '../Services/customer-thong-tin.service'
 @Component({
   selector: 'app-customer-gia-han-edit-dialog',
   templateUrl: './customer-gia-han-edit-dialog.component.html',
+  styleUrl:'./customer-gia-han-edit-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })
