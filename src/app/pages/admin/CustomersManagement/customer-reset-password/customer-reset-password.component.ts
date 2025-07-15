@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-customer-reset-password-dialog',
   templateUrl: './customer-reset-password.component.html',
+  styleUrl:'./customer-reset-password.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })

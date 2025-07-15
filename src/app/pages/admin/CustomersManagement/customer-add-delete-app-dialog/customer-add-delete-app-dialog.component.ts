@@ -26,6 +26,7 @@ import { finalize, tap } from 'rxjs/operators';
 @Component({
   selector: 'customer-add-delete-app-dialog',
   templateUrl: './customer-add-delete-app-dialog.component.html',
+  styleUrl:'./customer-add-delete-app-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:false
 })
@@ -189,11 +190,11 @@ export class CustomerAddDeleteAppDialogComponent implements OnInit, OnDestroy {
     return this.translateService.instant('CUSTOMER_ADDDELETEAPP.TITLE');
   }
 
-  private prepareData(): CustomerAddDeletAppModel | undefined {
+  private prepareData(): CustomerAddDeletAppModel | void {
     let model = new CustomerAddDeletAppModel();
     model.empty();
     model.CustomerID = this.item.CustomerID;
-    model.EndDate = this.formGroup.controls["endate"].value ? this.generalService.format_date(this.formGroup.controls["endate"].value) : '';
+    model.EndDate = this.formGroup.controls["enddate"].value ? this.generalService.format_date(this.formGroup.controls["enddate"].value) : '';
     model.LstAddAppID = this.selection2.selected;
     if (model.LstAddAppID.length > 0) {
       if (!model.EndDate) {

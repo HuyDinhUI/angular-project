@@ -50,6 +50,7 @@ const routes: Routes = [
     CustomerAddDeleteAppDialogComponent,
     CustomerImportEditDialogComponent,
     TopHeaderComponent
+    
   ],
   imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
   providers: [

@@ -12,7 +12,7 @@ export interface CustomerModelDTO {
 }
 
 export class CustomerModel {
-  RowID!: number;
+  RowID: number;
   Code!: string;
   CompanyName!: string;
   RegisterName!: string;

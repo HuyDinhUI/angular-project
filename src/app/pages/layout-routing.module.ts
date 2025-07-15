@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LayoutComponent} from './_layout/layout.component'
+import { AdminComponent } from './theme/layout/admin/admin.component';
 
-import { CustomersManagementComponent } from './admin/CustomersManagement/CustomersManagement.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent, 
+    component: AdminComponent, 
     children: [
       {
         path: 'Management/CustomerManagement',
         loadChildren:() => import("./admin/CustomersManagement/CustomersManagement.module").then((m) => m.CustomerManagementModule)
           
+      },
+      {
+        path:'Management/AccountManagement',
+        loadChildren:() => import("./admin/AccountsManagement/AccountManagement.module").then((m) => m.AccountManagementModule)
       },
 
       { path: '', redirectTo: 'Management/CustomerManagement', pathMatch: 'full' }

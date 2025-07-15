@@ -1,21 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
+@import './app/scss/variables';
 
-html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}/* You can add global styles to this file, and also import other style files */
-body{
-    
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* fonts-icon */
+@import './app/scss/fonts/fontawesome/scss/fontawesome';
+@import './app/scss/fonts/feather/iconfont';
+
+@import './app/scss/general';
+@import './app/scss/generic';
+@import './app/scss/mixins/function';
+
+/* important element */
+@import './app/scss/menu/pc-footer.scss';
+@import './app/scss/menu/menu-lite';
+
+/* basic elements */
+@import './app/scss/theme-elements/theme-elements';
+
+/* third party modules style*/
+@import './app/scss/plugins/plugins';
+
+@import './app/scss/custom';

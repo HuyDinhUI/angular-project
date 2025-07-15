@@ -3,6 +3,14 @@
 		padding: 0px !important;
 	}
 
+	:ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel{
+    max-width: 500px !important;
+    
+	}
+
+	::ng-deep .mat-mdc-dialog-surface {
+		border-radius: 10px !important;
+	}
 
 	.btn {
 		font-family: 'Roboto';
@@ -10,10 +18,13 @@
 		font-size: 1.02rem;
 		border-radius: 3px;
 		padding: 5px 20px 5px 20px;
+		width: 70px;
+		cursor: pointer;
 	}
 
 	.btn-primary {
 		background-color: #3699ff;
+		color: white;
 	}
 
 	.modal-body {
@@ -35,7 +46,7 @@
 <div class="modal-header">
 	<div class="modal-title h4" style="color: #16a850;">{{data.title}}</div>
 </div>
-<div class="modal-body" style="text-align: center">
+<div class="modal-body p-4" style="text-align: center">
 	<ng-container *ngIf="viewLoading">
 		<span>{{data.waitDesciption}}</span>
 	</ng-container>
@@ -47,7 +58,7 @@
 	</ng-container>
 </div>
 
-<div class="modal-footer">
+<div class="modal-footer p-4">
 	<div *ngIf="data.isDel == true">
 		<button type="button" class="btn btn-primary btn-elevate" (click)="onNoClick()">
 			{{data.nameButtonCancel?data.nameButtonCancel:'Không'}}
@@ -56,9 +67,9 @@
 			{{data.nameButtonCancel?data.nameButtonOK:'Có'}}
 		</button>
 	</div>
-	<div *ngIf="data.isDel != true">
+	<div *ngIf="data.isDel != true" class="flex justify-center gap-5">
 		<!-- các xác nhận khác xóa -->
-		<button type="button" class="btn btn-light btn-elevate mr-1" (click)="onNoClick()">
+		<button type="button" class="btn btn-light btn-elevate" (click)="onNoClick()">
 			{{data.nameButtonCancel?data.nameButtonCancel:'Không'}}
 		</button>&nbsp;&nbsp;
 		<button type="button" class="btn btn-primary btn-elevate" (click)="onYesClick()">

@@ -27,7 +27,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              
             ],
             "polyfills": [
               "@angular/localize/init"
@@ -85,6 +87,7 @@
             ],
             "styles": [
               "src/styles.scss"
+              
             ],
             "polyfills": [
               "@angular/localize/init"
