@@ -16,24 +16,5 @@
   border: none !important;
 }
 
-::ng-deep .mat-mdc-table-sticky{
-  position: relative !important;
-  padding: 5px !important;
-}
-
-.mat-mdc-row{
-  background-color: white !important;
-  border-bottom: none !important;
-
-}
-
-.mat-mdc-cell {
-  border-bottom: 0.5px solid rgb(210, 210, 210) !important;
-  padding: 5px;
-}
-
-.mat-mdc-table-sticky{
-  text-align: left !important;
-}
 
 

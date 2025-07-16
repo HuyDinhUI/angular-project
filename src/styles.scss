@@ -21,3 +21,7 @@
 @import './app/scss/plugins/plugins';
 
 @import './app/scss/custom';
+
+a{
+    text-decoration: none !important;
+}

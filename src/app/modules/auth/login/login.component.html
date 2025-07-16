@@ -10,62 +10,44 @@
 </form>
 <p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p> -->
 
-<div
-  class="h-[100vh] bg-blue-200 shadow-lg flex items-center justify-center"
->
-  <div
-    class="w-100 min-h-150 bg-white rounded-2xl p-7 flex-row items-center justify-items-center"
-  >
-    <div class="flex items-center my-5">
-      <i class="text-5xl mr-2 text-indigo-600"></i>
-      <h1 class="text-4xl text-indigo-600 font-bold">Log in</h1>
+<div class="auth-wrapper">
+  <div class="auth-content card">
+    <div class="text-center">
+      <h1 class="">Log in</h1>
     </div>
-    <form [formGroup] = "loginForm" novalidate="novalidate" (ngSubmit)="submit()" class="gap-2 w-full my-5" >
+    <form
+      [formGroup]="loginForm"
+      novalidate="novalidate"
+      (ngSubmit)="submit()"
+      class="d-flex flex-column justify-content-center"
+    >
       <div class="">
-        <span>Username</span>
+        <span class="">Username</span>
         <input
-          type="text" formControlName="username" name="email" required
-          class="ring-1 ring-gray-200 w-full p-3 rounded-sm my-1"
+          type="text"
+          formControlName="username"
+          name="username"
+          required
+          class="form-control"
         />
       </div>
-      <div class="my-5 relative">
+      <div class="my-2 relative">
         <span>Password</span>
         <input
-          type="password" formControlName="password" name="password" required
-          class="ring-1 ring-gray-200 w-full p-3 rounded-sm my-1"
+          type="password"
+          formControlName="password"
+          name="password"
+          required
+          class="form-control"
         />
-        <a class="text-blue-700 absolute right-0 -top-0.5">
-          Forgot password?
-        </a>
+        <a class="text-muted mt-2 d-block mb-2"> Forgot password? </a>
       </div>
-      <div class="my-5 flex items-center">
-        <input type="checkbox" class="" />
-        <span class="mx-1">Remember me</span>
-      </div>
-      <button
-        type="submit"
-        class="w-full cursor-pointer hover:opacity-90 duration-75 p-3 font-bold text-white bg-indigo-600 rounded-xl"
-      >
-        Sign In
-      </button>
+      <button type="submit" class="btn btn-primary m-0">Sign In</button>
     </form>
-    <div class="w-full min-h-20 border-t-1 mt-10 relative border-gray-300">
-      <span
-        class="bg-white absolute -top-4 px-2 right-[50%] translate-x-[50%]"
-      >
-        or
-      </span>
-      <div class="flex cursor-pointer gap-10 mt-5">
-        <div
-          class="flex cursor-pointer hover:bg-gray-100 duration-75 items-center justify-center w-full ring-1 p-2 ring-gray-200 rounded-sm"
-        >
-          <i></i>
-          <span class="ml-1">Google</span>
-        </div>
-      </div>
-      <p class="text-center mt-5">
+    <div class="text-center mt-2">
+      <p class="">
         Don't have an account?
-        <a class="text-blue-700" to="/signup"> Sign up </a>
+        <a class="" to="/signup"> Sign up </a>
       </p>
     </div>
   </div>

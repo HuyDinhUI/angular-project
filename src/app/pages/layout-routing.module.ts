@@ -18,8 +18,12 @@ const routes: Routes = [
         path:'Management/AccountManagement',
         loadChildren:() => import("./admin/AccountsManagement/AccountManagement.module").then((m) => m.AccountManagementModule)
       },
+      {
+        path:'management/category',
+        loadChildren:() => import("./admin/management/category/category.module").then((m) => m.CategoryManagmentModel)
+      },
 
-      { path: '', redirectTo: 'Management/CustomerManagement', pathMatch: 'full' }
+      { path: '', redirectTo: 'management/category', pathMatch: 'full' }
     ]
   }
 ];
