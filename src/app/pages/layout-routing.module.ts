@@ -23,7 +23,7 @@ const routes: Routes = [
         loadChildren:() => import("./admin/management/category/category.module").then((m) => m.CategoryManagmentModel)
       },
 
-      { path: '', redirectTo: 'management/category', pathMatch: 'full' }
+      { path: '', redirectTo: 'management/category/listproduct', pathMatch: 'full' }
     ]
   }
 ];

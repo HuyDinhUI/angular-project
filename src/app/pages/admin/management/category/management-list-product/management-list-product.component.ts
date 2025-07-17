@@ -15,7 +15,7 @@ import { DateFilterCustomer } from '../../../CustomersManagement/Model/DateFilte
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { showSearchFormModel } from '../../../_shared/jee-search-form/jee-search-form.model';
 import { ListProductManagementService } from '../services/list-product-management.service';
-import { LayoutUtilsService } from '../../../_core/utils/layout-utils.service';
+import { LayoutUtilsService, MessageType } from '../../../_core/utils/layout-utils.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
@@ -23,6 +23,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { tap } from 'lodash';
 import { ResultModel } from '../../../_core/models/_base.model';
 import { ProductsModelDTO } from '../model/list-product-management.model';
+import { ImportProductDialogComponent } from './management-import-product-dialog/managemnt-import-product-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-product-management',
@@ -54,7 +56,10 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
   selection = new SelectionModel<number>(true, []);
   itemIds: number[] = [];
   selection2 = new SelectionModel<number>(true, []);
+
+  
   constructor(
+    private router: Router,
     private changeDetect: ChangeDetectorRef,
     public listProductManagementService: ListProductManagementService,
     private layoutUtilsService: LayoutUtilsService,
@@ -96,5 +101,31 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     this.isAllSelected()
       ? this.selection2.clear()
       : this.itemIds.forEach((row) => this.selection2.select(row));
+  }
+
+  import(){
+    const saveMessage = 'IMPORT THÀNH CÔNG'
+    const messageType = MessageType.Create;
+    const dialogRef =  this.dialog.open(ImportProductDialogComponent,{
+      data: {},
+      panelClass: 'custom-dialog',
+      maxWidth:'none',
+      width: '900px',
+      disableClose: true
+    })
+    dialogRef.afterClosed().subscribe((res) => {
+      if (!res){
+        this.listProductManagementService.fetch()
+      } else{
+        this.layoutUtilsService.showActionNotification(saveMessage,messageType,4000,true,false)
+        this.listProductManagementService.fetch()
+      }
+    })
+  }
+
+  add(){
+    this.router.navigate(['/management/category/listproduct/add'],{
+      queryParams:{}
+    })
   }
 }

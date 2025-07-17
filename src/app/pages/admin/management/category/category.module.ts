@@ -15,6 +15,8 @@ import { ListInsuranceManagmentComponent } from "./management-list-insurance/man
 import { ListGroupAssestManagmentComponent } from "./management-list-group-assest/management-list-group-assest.component";
 import { ListBrandManagmentComponent } from "./management-list-brand/management-list-brand.component";
 import { ListProductManagementService } from "./services/list-product-management.service";
+import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
+import { ImportProductDialogComponent } from "./management-list-product/management-import-product-dialog/managemnt-import-product-dialog.component";
 
 const routes: Routes = [
     {
@@ -23,7 +25,7 @@ const routes: Routes = [
         children: [
             {
                 path:'listproduct',
-                component:ListProudctManagmentComponent
+                loadChildren:() => import("./management-list-product/managment-list-product.module").then((m) => m.ListProductsManagementModule)
             },
             {
                 path:'typeassest',
@@ -67,11 +69,13 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         CategoryManagementComponent,
-        ListProudctManagmentComponent
+        
+        ImportProductDialogComponent
     ],
     imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
     providers: [
-        ListProductManagementService
+        ListProductManagementService,
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, height: 'auto', width: '1200px' } }
     ],
     exports:[RouterModule]
 })

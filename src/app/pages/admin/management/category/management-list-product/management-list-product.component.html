@@ -1,11 +1,11 @@
-<div class="card card-custom gutter-br">
+<div class="card card-custom gutter-br position-relative" style="min-height:500px;">
   <div class="card-header d-flex justify-content-between">
     <div class="card-search">
       <app-jee-search-form [showSearch]="showSearch"> </app-jee-search-form>
     </div>
     <div class="card-toolbar">
-      <button type="button" class="btn btn-primary">Import dữ liệu</button>
-      <button type="button" class="btn btn-primary">Thêm mới</button>
+      <button type="button" class="btn btn-primary" (click)="import()">Import dữ liệu</button>
+      <button type="button" class="btn btn-primary" (click)="add()">Thêm mới</button>
     </div>
   </div>
   <div class="card-header">
@@ -45,7 +45,7 @@
         </ng-container>
         <ng-container matColumnDef="#">
           <thead>
-            <tr class="table-priamry">
+            <tr class="table-primary">
               <th *matHeaderCellDef class="">
                 <span>#</span>
                 <app-sort-icon
@@ -210,4 +210,5 @@
       </table>
     </div>
   </div>
+  <router-outlet></router-outlet>
 </div>
