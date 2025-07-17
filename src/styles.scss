@@ -27,5 +27,26 @@ a{
 }
 
 .pcoded-navbar {
-    z-index: 10001 !important;
+    z-index: 1001 !important;
+}
+
+.mat-mdc-tab-label-container{
+    border-bottom-color: rgb(212, 212, 212) !important;
+}
+
+.mat-mdc-tab .mdc-tab-indicator__content--underline{
+    border-color: rgb(63, 63, 255) !important;
+    border-width: 0.5px !important;
+}
+
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab{
+    flex-grow: 0 !important;
+}
+
+.mdc-text-field{
+    padding: 0 !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before{
+    border-bottom-color: rgb(232, 232, 232) !important;
 }

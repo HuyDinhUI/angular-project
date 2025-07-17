@@ -1,10 +1,139 @@
 <div
   class="position-absolute top-0 left-0 text-bg-light z-3 container-fluid py-3"
-  style="height: 100%; z-index: 999 !important; border-radius: 6px"
+  style="
+    height: 100%;
+    z-index: 999 !important;
+    border-radius: 6px;
+    background-color: white !important;
+    
+  "
 >
-  <div class="card-header d-flex justify-content-between">
+  <div class="card-header d-flex justify-content-between" style="padding: 10px !important;">
     <div class="card-title">
-        <span>THÊM MỚI MẶT HÀNG</span>
+      <span>THÊM MỚI MẶT HÀNG</span>
     </div>
+    <div class="card-toolbar">
+      <button class="btn btn-secondary">&xlarr; TRỞ VỀ</button>
+      <button class="btn btn-secondary">
+        <i class="fa-solid fa-gear"></i>
+        ĐẶT LẠI
+      </button>
+      <button class="btn btn-primary">
+        <i class="fa-solid fa-floppy-disk"></i>
+        LƯU
+      </button>
+    </div>
+  </div>
+  <div class="card-body" style="padding: 10px !important;" style="height:300px">
+    <form class="form needs-validation" novalidate>
+      <div class="d-flex gap-2">
+        <mat-form-field class="flex-md-fill">
+          <mat-label class="">Mã hàng</mat-label>
+          <input matInput class="form-control" required />
+        </mat-form-field>
+        <mat-form-field class="flex-md-fill">
+          <mat-label class="">Tên mặt hàng</mat-label>
+          <input matInput class="form-control" required />
+        </mat-form-field>
+      </div>
+      <mat-tab-group>
+        <mat-tab label="Thông tin cơ bản">
+          <div class="form-group row-cols-4 mt-3">
+            <mat-form-field appearance="fill" class="col">
+              <mat-label>Loại mặt hàng</mat-label>
+              <mat-select>
+                <mat-option value="1">Mặt hàng A</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>Đơn vị tính</mat-label>
+              <mat-select>
+                <mat-option> </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>Số kỳ tính khấu hao tối thiểu</mat-label>
+              <input value="0" matInput />
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>Số kỳ tính khấu hao tối đa</mat-label>
+              <input value="0" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col">
+              <mat-label>Tên On Site</mat-label>
+              <input matInput />
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>VAT</mat-label>
+              <input value="0" matInput />
+            </mat-form-field>
+          </div>
+
+          <div class="form-group d-flex gap-3 mt-3 flex-wrap">
+            <mat-form-field appearance="fill">
+              <mat-label>Giá mua</mat-label>
+              <input matInput value="0">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Giá bán</mat-label>
+              <input matInput value="0">
+            </mat-form-field>
+
+           <mat-form-field appearance="fill">
+              <mat-label>Đinh mức tối thiểu</mat-label>
+              <input matInput value="0">
+            </mat-form-field>
+
+           <mat-form-field appearance="fill">
+              <mat-label>Đinh mức tối đa</mat-label>
+              <input matInput value="0">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Đơn vị tính cấp 2</mat-label>
+              <mat-select>
+                <mat-option></mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Quy đổi đơn vị tính cấp 2</mat-label>
+              <input matInput value="0">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Đơn vị tính cấp 3</mat-label>
+              <mat-select>
+                <mat-option></mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Quy đổi đơn vị tính cấp 3</mat-label>
+              <input matInput value="0">
+            </mat-form-field>
+
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Thông tin phụ">
+          <!-- Nội dung form thông tin phụ -->
+        </mat-tab>
+
+        <mat-tab label="Hình ảnh chính">
+          <!-- Upload hình ảnh -->
+        </mat-tab>
+
+        <mat-tab label="Hình ảnh phụ">
+          <!-- Upload hình ảnh phụ -->
+        </mat-tab>
+      </mat-tab-group>
+    </form>
   </div>
 </div>
