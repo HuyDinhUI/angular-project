@@ -1,0 +1,110 @@
+<div
+  class="position-absolute top-0 left-0 text-bg-light z-3 container-fluid py-3"
+  style="
+    height: 100%;
+    z-index: 999 !important;
+    border-radius: 6px;
+    background-color: white !important;
+  "
+>
+<div
+    class="card-header d-flex justify-content-between"
+    style="padding: 10px !important"
+  >
+    <div class="card-title">
+      <span class="fw-bold">THÊM MỚI LOẠI MẶT HÀNG</span>
+    </div>
+    <div class="card-toolbar">
+      <button (click)="goBack()" class="btn btn-secondary">
+        &xlarr; TRỞ VỀ
+      </button>
+      <button (click)="resetForm()" class="btn btn-secondary">
+        <i class="fa-solid fa-gear"></i>
+        ĐẶT LẠI
+      </button>
+      <button (click)="onSubmit()" class="btn btn-primary">
+        <i class="fa-solid fa-floppy-disk"></i>
+        LƯU
+      </button>
+    </div>
+  </div>
+  <div class="card-body" style="height: 300px; padding: 5px !important">
+    <form [formGroup]="formGroup" class="form needs-validation" novalidate>
+        <div class="d-flex flex-wrap gap-3">
+            <mat-form-field class="w-25">
+              <mat-label>Tên mặt hàng</mat-label>
+              <input formControlName="tenloaimathang" type="text" matInput required>
+              <mat-error
+            *ngIf="
+              formGroup.get('tenloaimathang')?.touched &&
+              formGroup.get('tenloaimathang')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-25">
+              <mat-label>Loại mặt hàng cha</mat-label>
+              <mat-select formControlName="loaimathangcha">
+                <mat-option></mat-option>
+              </mat-select>
+              <mat-error
+            *ngIf="
+              formGroup.get('loaimathangcha')?.touched &&
+              formGroup.get('loaimathangcha')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-25"> 
+              <mat-label>Mô tả</mat-label>
+              <input formControlName="mota" type="text" matInput>
+              <mat-error
+            *ngIf="
+              formGroup.get('mota')?.touched &&
+              formGroup.get('mota')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+             <mat-form-field class="flex-fill">
+              <mat-label>Độ ưu tiên</mat-label>
+              <input formControlName="douutien" value="0" matInput required>
+              <mat-error
+            *ngIf="
+              formGroup.get('douutien')?.touched &&
+              formGroup.get('douutien')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Kho mặt định</mat-label>
+              <mat-select formControlName="khomacdinh">
+                <mat-option></mat-option>
+              </mat-select>
+              <mat-error
+            *ngIf="
+              formGroup.get('khomacdinh')?.touched &&
+              formGroup.get('khomacdinh')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="">
+      <button class="btn btn-primary">Chọn hình ảnh</button>
+    </div>
+  </div>
+
+</div>
