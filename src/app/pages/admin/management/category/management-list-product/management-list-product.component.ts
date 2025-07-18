@@ -128,4 +128,14 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
       queryParams:{}
     })
   }
+
+  deleteProduct(item: any){
+    const message = "Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác."
+    const dialog = this.layoutUtilsService.deleteElement('',message)
+    dialog.afterClosed().subscribe((x)=>{
+      if (x){
+        
+      }
+    })
+  }
 }

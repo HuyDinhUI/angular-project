@@ -1,4 +1,4 @@
-<div class="card card-custom gutter-br position-relative" style="height:600px;">
+<div class="card card-custom gutter-br position-relative" style="height:650px;">
   <div class="card-header d-flex justify-content-between">
     <div class="card-search">
       <app-jee-search-form [showSearch]="showSearch"> </app-jee-search-form>
@@ -192,14 +192,15 @@
                   class="btn"
                   style="margin-right: 0px !important"
                 >
-                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-pen-to-square text-primary"></i>
                 </button>
                 <button
                   type="button"
                   class="btn"
                   style="margin-left: 0px !important; padding: 0 !important"
+                  (click)="deleteProduct(r)"
                 >
-                  <i class="fa-solid fa-trash"></i>
+                  <i class="fa-solid fa-trash text-danger"></i>
                 </button>
               </div>
             </td>
