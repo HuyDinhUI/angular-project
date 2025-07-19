@@ -27,7 +27,7 @@ a{
 }
 
 .pcoded-navbar {
-    z-index: 1040 !important;
+    z-index: 1030 !important;
 }
 
 .mat-mdc-tab-label-container{
@@ -67,7 +67,12 @@ a{
     background-color: rgb(0, 206, 188) !important;
 }
 
-.cdk-overlay-pane {
+.cdk-global-overlay-wrapper {
+    
+    z-index: 1100 !important;
+}
+
+.cdk-overlay-pane{
     background-color: white !important;
 }
 
@@ -75,6 +80,29 @@ a{
 
 .mat-mdc-form-field-error-wrapper{
     padding: 0 !important;
+}
+
+body .mat-form-field.mat-form-field-invalid {
+  .mat-input-element {
+    color: #f64e60 !important;
+  }
+  .mat-form-field-label {
+    color: #f64e60 !important;
+    .mat-form-field-required-marker {
+      color: #f64e60 !important;
+    }
+  }
+  .mat-form-field-ripple {
+    background-color: #f64e60 !important;
+  }
+}
+
+.mdc-text-field--focused {
+  color: #0e72d8 !important;
+}
+
+.mdc-text-field--invalid{
+    color:#f64e60 !important;
 }
 
 

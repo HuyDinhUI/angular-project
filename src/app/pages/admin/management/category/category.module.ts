@@ -65,7 +65,7 @@ const routes: Routes = [
       },
       {
         path: 'brand',
-        component: ListBrandManagmentComponent,
+        loadChildren: () => import('./management-list-brand/management-list-brand.module').then((m) => m.ListBrandManagementModule)
       },
 
       { path: '', redirectTo: 'category', pathMatch: 'full' },

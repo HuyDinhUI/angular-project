@@ -1,0 +1,31 @@
+<div class="modal-content p-3">
+    <div
+    class="modal-header d-flex py-2 border-bottom justify-content-between align-items-center"
+  >
+    <div class="modal-title h6">
+      <span class="dialog-title">THÊM NHÃN HIỆU</span>
+    </div>
+    <div class="modal-title d-flex gap-2">
+      <button (click)="goBack()" class="btn btn-secondary" style="margin: 0 !important">&xlarr; TRỞ VỀ</button>
+      <button (click)="onSubmit()" class="btn btn-primary" style="margin: 0 !important">Lưu và trở về</button>
+      <button class="btn btn-primary" style="margin: 0 !important">Lưu và thêm mới</button>
+    </div>
+  </div>
+  <div class="modal-body mt-3">
+    <form [formGroup]="formGroup">
+      <mat-form-field class="w-50">
+        <mat-label>Tên nhãn hiệu</mat-label>
+        <input class="input-batbuoc mat-focused required" formControlName="tennhanhieu" matInput type="text" required>
+        <mat-error
+            *ngIf="
+              formGroup.get('tennhanhieu')?.touched &&
+              formGroup.get('tennhanhieu')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
