@@ -45,7 +45,7 @@ const routes: Routes = [
 
       {
         path: 'listunit',
-        component: ListUnitManagmentComponent,
+        loadChildren: () => import('./mangement-list-unit/management-list-unit.module').then((m) => m.ListUnitManagementModule),
       },
       {
         path: 'reasonassest',
