@@ -67,7 +67,7 @@
         <ng-container matColumnDef="select">
           <thead>
             <tr>
-              <th *matHeaderCellDef style="padding: 2px;background-color:rgb(208, 255, 208);color:green !important">
+              <th *matHeaderCellDef style="padding: 2px;background-color:rgb(208, 255, 208);color:green !important;">
                 <mat-checkbox
                   (change)="$event ? masterToggle() : null"
                   [checked]="selection2.hasValue() && isAllSelected()"

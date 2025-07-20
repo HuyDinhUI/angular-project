@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'typeassest',
-        component: ListTypeAssestManagmentComponent,
+        loadChildren: () => import('./management-list-type-assest/management-list-type-assest.module').then((m) => m.ListTypeAssestManagementModule)
       },
 
       {
@@ -57,7 +57,7 @@ const routes: Routes = [
       },
       {
         path: 'insurance',
-        component: ListInsuranceManagmentComponent,
+        loadChildren: ()=> import('./management-list-insurance/management-list-insurance.module').then((m) => m.ListInsuranceManagementModule)
       },
       {
         path: 'groupassest',

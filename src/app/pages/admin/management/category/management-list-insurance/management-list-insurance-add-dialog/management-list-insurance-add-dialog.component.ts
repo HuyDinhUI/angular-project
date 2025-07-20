@@ -23,7 +23,11 @@ export class AddInsuranceDialogComponenet implements OnInit, OnDestroy{
 
     loadForm(){
         this.formGroup = this.fb.group({
-            tenxuatxu: ['', Validators.compose([Validators.required])]
+            tendonvi: ['', Validators.compose([Validators.required])],
+            diachi: ['',Validators.compose([Validators.required])],
+            sodienthoai: ['',Validators.compose([Validators.required, Validators.pattern(/^-?(0|[0-9]\d*)?$/)])],
+            nguoilienhe: ['', Validators.compose([Validators.required])],
+            ghichu: ['']
         })
     }
 

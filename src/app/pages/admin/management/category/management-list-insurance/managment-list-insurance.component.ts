@@ -11,6 +11,7 @@ import { LayoutUtilsService, MessageType } from '../../../_core/utils/layout-uti
 import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
 import { AddInsuranceDialogComponenet } from './management-list-insurance-add-dialog/management-list-insurance-add-dialog.component';
+import { ImportInsuranceDialogComponent } from './management-list-insurance-import-dialog/management-list-insurance-add-dialog.component';
 
 @Component({
     selector: 'app-tlist-insurance-management',
@@ -20,14 +21,14 @@ import { AddInsuranceDialogComponenet } from './management-list-insurance-add-di
 })
 export class ListInsuranceManagmentComponent implements OnInit, OnDestroy {
     
-    paginator: PaginatorState;
+  paginator: PaginatorState;
   sorting: SortState;
   grouping: GroupingState;
   isLoading: boolean;
   filterGroup: FormGroup;
   searchGroup: FormGroup;
   private subscriptions: Subscription[] = [];
-  displayedColumns = ['STT', 'TenDonVi', 'DiaChi', 'SoDienThoai','NguoiLienhe','GhiChu','ThaoTac'];
+  displayedColumns = ['STT', 'TenDonVi', 'DiaChi', 'SoDienThoai','NguoiLienHe','GhiChu','ThaoTac'];
   showSearch = new showSearchFormModel();
   selection = new SelectionModel<bigint>(true, []);
   itemIds: bigint[] = [];
@@ -102,5 +103,23 @@ export class ListInsuranceManagmentComponent implements OnInit, OnDestroy {
     });
   }
 
-    
+  import(){
+    const saveMessage = 'IMPORT THÀNH CÔNG'
+    const messageType = MessageType.Create;
+    const dialogRef =  this.dialog.open(ImportInsuranceDialogComponent,{
+      data: {},
+      panelClass: 'custom-dialog',
+      maxWidth:'none',
+      width: '900px',
+      disableClose: true
+    })
+    dialogRef.afterClosed().subscribe((res) => {
+      if (!res){
+        this.listInsuranceManagementService.fetch()
+      } else{
+        this.layoutUtilsServie.showActionNotification(saveMessage,messageType,4000,true,false)
+        this.listInsuranceManagementService.fetch()
+      }
+    })
+  }
 }

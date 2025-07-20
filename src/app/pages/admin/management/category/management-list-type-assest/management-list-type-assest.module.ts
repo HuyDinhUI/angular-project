@@ -1,3 +1,4 @@
+
 import { RouterModule, Routes } from "@angular/router";
 
 import { NgModule } from "@angular/core";
@@ -7,24 +8,28 @@ import { JeeCustomerModule } from "../../../../jee-customer.module";
 import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { TranslateModule } from "@ngx-translate/core";
 import { ListProduceManagementService } from "../services/list-produce-management.service";
-import { ListInsuranceManagmentComponent } from "./managment-list-insurance.component";
-import { AddInsuranceDialogComponenet } from "./management-list-insurance-add-dialog/management-list-insurance-add-dialog.component";
+
+
 import { ListInsuranceManagementService } from "../services/list-insurance-managment.service";
-import { ImportInsuranceDialogComponent } from "./management-list-insurance-import-dialog/management-list-insurance-add-dialog.component";
+import { ListTypeAssestManagmentComponent } from "./management-list-type.component";
+import { AddTypeAssestDialogComponent } from "./management-list-type-assest-add-dialog/managment-list-type-assest-add-dialog.component";
+import { ImportTypeAssestDialogComponent } from "./management-list-type-assest-import-dialog/managment-list-type-assest-import-dialog.component";
+import { ListTypeAssestManagementService } from "../services/list-type-assest-management.service";
+
 
 const routes: Routes = [
     {
         path: '',
-        component: ListInsuranceManagmentComponent,
+        component: ListTypeAssestManagmentComponent,
         
     }
 ]
 
 @NgModule({
-    declarations: [ListInsuranceManagmentComponent, AddInsuranceDialogComponenet, ImportInsuranceDialogComponent],
+    declarations: [ListTypeAssestManagmentComponent,AddTypeAssestDialogComponent,ImportTypeAssestDialogComponent],
     imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
-    providers: [ListInsuranceManagementService],
+    providers: [ListTypeAssestManagementService],
     exports:[RouterModule]
 })
 
-export class ListInsuranceManagementModule{}
+export class ListTypeAssestManagementModule{}
