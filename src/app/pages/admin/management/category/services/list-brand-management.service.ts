@@ -46,7 +46,7 @@ export class ListBrandManagementService
     this.subscriptions.forEach((sb) => sb.unsubscribe())
   }
 
-  public getListProduct(): Observable<ResultModel<BrandModelDTO>>{
+  public getListBrand(): Observable<ResultModel<BrandModelDTO>>{
     const httpHeaders = this.httpUtils.getHTTPHeaders();
     const Url = API_PRODUCTS_URL
     return this.http.get<any>(Url,{

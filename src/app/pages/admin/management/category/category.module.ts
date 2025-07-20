@@ -53,7 +53,7 @@ const routes: Routes = [
       },
       {
         path: 'produce',
-        component: ListProduceManagmentComponent,
+        loadChildren: () => import('./management-list-produce/management-list-produce.module').then((m) => m.ListProduceManagementModule)
       },
       {
         path: 'insurance',

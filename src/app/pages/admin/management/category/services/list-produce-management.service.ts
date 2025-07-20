@@ -12,11 +12,11 @@ import { HttpClient } from '@angular/common/http';
 import { HttpUtilService } from '../../../_core/utils/http-utils.service';
 import { Observable } from 'rxjs';
 import { ResultModel } from '../../../_core/models/_base.model';
-import { TypeProductsModelDTO } from '../model/type-product-managment.model';
-import { UnitModelDTO } from '../model/list-init-management.model';
+import { BrandModelDTO } from '../model/list-brand-management.model';
+import { ProduceModelDTO } from '../model/list-produce-management.model';
 
 const API_PRODUCTS_URL =
-  environment.ApiRoot + '/categorymanagement/listunit';
+  environment.ApiRoot + '/categorymanagement/listproduce';
 const DEFAULT_STATE: ITableState = {
   filter: {},
   paginator: new PaginatorState(),
@@ -27,8 +27,8 @@ const DEFAULT_STATE: ITableState = {
 };
 
 @Injectable()
-export class ListUnittManagementService
-  extends ITableService<UnitModelDTO[]>
+export class ListProduceManagementService
+  extends ITableService<ProduceModelDTO[]>
   implements OnDestroy
 {
   API_URL_FIND: string = API_PRODUCTS_URL;
@@ -47,7 +47,7 @@ export class ListUnittManagementService
     this.subscriptions.forEach((sb) => sb.unsubscribe())
   }
 
-  public getTypeUnit(): Observable<ResultModel<UnitModelDTO>>{
+  public getListProduce(): Observable<ResultModel<ProduceModelDTO>>{
     const httpHeaders = this.httpUtils.getHTTPHeaders();
     const Url = API_PRODUCTS_URL
     return this.http.get<any>(Url,{
