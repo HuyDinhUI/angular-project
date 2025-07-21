@@ -1,5 +1,8 @@
 <div class="card card-custom gutter-br position-relative" style="height: 650px">
-  <div class="card-header d-flex justify-content-between align-items-center" style="padding:10px 20px !important;">
+  <div
+    class="card-header d-flex justify-content-between align-items-center"
+    style="padding: 10px 20px !important"
+  >
     <div class="card-title">
       <span class="fw-bold">MẶT HÀNG</span>
     </div>
@@ -12,11 +15,7 @@
       </button>
     </div>
   </div>
-  <div
-    class="card-header"
-    style="padding-bottom: 0 !important"
-  >
-    
+  <div class="card-header" style="padding-bottom: 0 !important">
     <div class="card-search">
       <form class="d-flex gap-3 flex-wrap">
         <mat-form-field class="w-50">
@@ -25,31 +24,52 @@
         </mat-form-field>
         <mat-form-field class="w-25">
           <mat-label>Loại mặt hàng</mat-label>
-          <mat-select>
-            <mat-option> </mat-option>
+          <mat-select (selectionChange)="filterLoaiMatHang($event.value)">
+            <mat-option
+              *ngFor="
+                let item of listTypeProductManagementService.items$ | async
+              "
+              [value]="item.IdLMH"
+            >
+              {{ item.TenLMH }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="flex-fill">
           <mat-label>Đơn vị tính</mat-label>
-          <mat-select>
-            <mat-option> </mat-option>
+          <mat-select (selectionChange)="filterDonViTinh($event.value)">
+            <mat-option
+              *ngFor="let item of listUnitManagementService.items$ | async"
+              [value]="item.IdDVT"
+            >
+              {{ item.TenDVT }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="w-25">
           <mat-label>Nhãn hiệu</mat-label>
-          <mat-select>
-            <mat-option> </mat-option>
+          <mat-select (selectionChange)="filterNhanHieu($event.value)">
+            <mat-option
+              *ngFor="let item of listBrandManagementService.items$ | async"
+              [value]="item.IdNhanHieu"
+            >
+              {{ item.TenNhanHieu }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="w-25">
           <mat-label>Xuất xứ</mat-label>
-          <mat-select>
-            <mat-option> </mat-option>
+          <mat-select (selectionChange)="filterXuatXu($event.value)">
+            <mat-option
+              *ngFor="let item of listProduceManagementService.items$ | async"
+              [value]="item.IdXuatXu"
+            >
+              {{ item.TenXuatXu }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </form>
     </div>
-    
   </div>
   <div class="card-header">
     <div class="card-toolbar d-flex gap-2 align-items-center">
@@ -67,7 +87,14 @@
         <ng-container matColumnDef="select">
           <thead>
             <tr>
-              <th *matHeaderCellDef style="padding: 2px;background-color:rgb(208, 255, 208);color:green !important;">
+              <th
+                *matHeaderCellDef
+                style="
+                  padding: 2px;
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <mat-checkbox
                   (change)="$event ? masterToggle() : null"
                   [checked]="selection2.hasValue() && isAllSelected()"
@@ -89,7 +116,14 @@
         <ng-container matColumnDef="#">
           <thead>
             <tr class="table-primary">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>#</span>
                 <app-sort-icon
                   column="#"
@@ -111,7 +145,14 @@
         <ng-container matColumnDef="HinhAnh">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>Hình ảnh</span>
                 <app-sort-icon
                   column="HinhAnh"
@@ -133,7 +174,14 @@
         <ng-container matColumnDef="MaHang">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>Mã hàng</span>
                 <app-sort-icon
                   column="MaHang"
@@ -154,7 +202,14 @@
         <ng-container matColumnDef="TenMatHang">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>Tên mặt hàng</span>
                 <app-sort-icon
                   column="TenMatHang"
@@ -175,7 +230,14 @@
         <ng-container matColumnDef="SoKyTinhKhauHaoToiThieu">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>Số kỳ tính khấu hao tối thiểu</span>
                 <app-sort-icon
                   column="SoKyTinhKhauHaoToiThieu"
@@ -196,7 +258,14 @@
         <ng-container matColumnDef="SoKyTinhKhauHaoToiDa">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>Số kỳ tính khấu hao tối đa</span>
                 <app-sort-icon
                   column="SoKyTinhKhauHaoToiDa"
@@ -217,7 +286,14 @@
         <ng-container matColumnDef="ThaoTac">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th
+                *matHeaderCellDef
+                class=""
+                style="
+                  background-color: rgb(208, 255, 208);
+                  color: green !important;
+                "
+              >
                 <span>Thao tác</span>
                 <app-sort-icon
                   column="ThaoTac"

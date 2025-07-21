@@ -17,6 +17,10 @@ import { ListBrandManagmentComponent } from './management-list-brand/management-
 import { ListProductManagementService } from './services/list-product-management.service';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ImportProductDialogComponent } from './management-list-product/management-import-product-dialog/managemnt-import-product-dialog.component';
+import { TypeProductManagementService } from './services/type-product-managment.service';
+import { ListBrandManagementService } from './services/list-brand-management.service';
+import { ListProduceManagementService } from './services/list-produce-management.service';
+import { ListUnittManagementService } from './services/list-unit-management.service';
 
 const routes: Routes = [
   {
@@ -84,6 +88,10 @@ const routes: Routes = [
   ],
   providers: [
     ListProductManagementService,
+    TypeProductManagementService,
+    ListBrandManagementService,
+    ListProduceManagementService,
+    ListUnittManagementService,
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: { hasBackdrop: true, height: 'auto', width: '1200px' },

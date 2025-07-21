@@ -25,6 +25,10 @@ import { ResultModel } from '../../../_core/models/_base.model';
 import { ProductsModelDTO } from '../model/list-product-management.model';
 import { ImportProductDialogComponent } from './management-import-product-dialog/managemnt-import-product-dialog.component';
 import { Router } from '@angular/router';
+import { TypeProductManagementService } from '../services/type-product-managment.service';
+import { ListUnittManagementService } from '../services/list-unit-management.service';
+import { ListBrandManagementService } from '../services/list-brand-management.service';
+import { ListProduceManagementService } from '../services/list-produce-management.service';
 
 @Component({
   selector: 'app-list-product-management',
@@ -62,6 +66,10 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     private router: Router,
     private changeDetect: ChangeDetectorRef,
     public listProductManagementService: ListProductManagementService,
+    public listTypeProductManagementService: TypeProductManagementService,
+    public listUnitManagementService: ListUnittManagementService,
+    public listBrandManagementService: ListBrandManagementService,
+    public listProduceManagementService: ListProduceManagementService,
     private layoutUtilsService: LayoutUtilsService,
     public dialog: MatDialog,
     public danhmuc: DanhMucChungService,
@@ -71,6 +79,10 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.listProductManagementService.fetch();
+    this.listTypeProductManagementService.fetch();
+    this.listUnitManagementService.fetch();
+    this.listBrandManagementService.fetch();
+    this.listProduceManagementService.fetch();
     
     this.listProductManagementService.items$.subscribe(data =>{
         data.forEach(element => {
@@ -121,6 +133,30 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
         this.listProductManagementService.fetch()
       }
     })
+  }
+
+  filterLoaiMatHang(value: number) {
+    const filter = {};
+    filter['IdLMH'] = value;
+    this.listProductManagementService.patchState({ filter});
+  }
+
+  filterDonViTinh(value: number){
+    const filter =  {}
+    filter['IdDVT'] = value;
+    this.listProductManagementService.patchState({filter})
+  }
+
+  filterNhanHieu(value: number){
+    const filter ={}
+    filter['IdNhanHieu'] = value;
+    this.listProductManagementService.patchState({filter})
+  }
+
+  filterXuatXu(value: number){
+    const filter = {}
+    filter['IdXuatXu'] = value;
+    this.listProductManagementService.patchState({filter})
   }
 
   add(){
