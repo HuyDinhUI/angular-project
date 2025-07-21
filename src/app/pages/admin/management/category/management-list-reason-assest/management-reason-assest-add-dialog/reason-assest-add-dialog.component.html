@@ -1,0 +1,94 @@
+<div class="modal-content p-3">
+  <div
+    class="modal-header d-flex py-2 border-bottom justify-content-between align-items-center"
+  >
+    <div class="modal-title h6">
+      <span class="dialog-title">THÊM LÍ DO TĂNG GIẢM</span>
+    </div>
+    <div class="modal-title d-flex gap-2">
+      <button
+        (click)="goBack()"
+        class="btn btn-secondary"
+        style="margin: 0 !important"
+      >
+        &xlarr; TRỞ VỀ
+      </button>
+      <button
+        (click)="onSubmit()"
+        class="btn btn-primary"
+        style="margin: 0 !important"
+      >
+        Lưu và trở về
+      </button>
+      <button class="btn btn-primary" style="margin: 0 !important">
+        Lưu và thêm mới
+      </button>
+      <button class="btn btn-primary" style="margin: 0 !important">
+        Phóng to
+      </button>
+    </div>
+  </div>
+  <div class="modal-body mt-3">
+    <form [formGroup]="formGroup" class="form needs-validation d-flex gap-2 flex-wrap" novalidate>
+      <mat-form-field class="w-50">
+        <mat-label>Loại tăng giảm</mat-label>
+        <mat-select formControlName="loaitanggiam">
+          <mat-option value="1">Tăng</mat-option>
+          <mat-option value="2">Giảm</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            formGroup.get('loaitanggiam')?.touched &&
+            formGroup.get('loaitanggiam')?.invalid
+          "
+          style="color: red; font-size: 10px"
+        >
+          Trường này là bắt buộc
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="flex-fill">
+        <mat-label>Mã tăng giảm</mat-label>
+        <input
+          class="input-batbuoc mat-focused required"
+          formControlName="matanggiam"
+          matInput
+          type="text"
+          required
+        />
+        <mat-error
+          *ngIf="
+            formGroup.get('matanggiam')?.touched &&
+            formGroup.get('matanggiam')?.invalid
+          "
+          style="color: red; font-size: 10px"
+        >
+          Trường này là bắt buộc
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-50">
+        <mat-label>Tên tăng giảm</mat-label>
+        <input
+          class="input-batbuoc mat-focused required"
+          formControlName="tentanggiam"
+          matInput
+          type="text"
+          required
+        />
+        <mat-error
+          *ngIf="
+            formGroup.get('tentanggiam')?.touched &&
+            formGroup.get('tentanggiam')?.invalid
+          "
+          style="color: red; font-size: 10px"
+        >
+          Trường này là bắt buộc
+        </mat-error>
+      </mat-form-field>
+      <div class="flex-fill">
+        <mat-label>Trạng thái</mat-label>
+        <br />
+        <mat-checkbox formControlName="trangthai" />Có hiệu lực
+      </div>
+    </form>
+  </div>
+</div>

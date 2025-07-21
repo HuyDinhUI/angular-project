@@ -1,0 +1,132 @@
+<div class="modal-content p-3">
+  <div
+    class="modal-header d-flex py-2 border-bottom justify-content-between align-items-center"
+  >
+    <div class="modal-title h6">
+      <span class="dialog-title">IMPORT DỮ LIỆU TỪ EXCEL</span>
+    </div>
+    <div class="modal-title">
+      <button (click)="goBack()" class="btn btn-secondary" style="margin: 0 !important">&xlarr; TRỞ VỀ</button>
+    </div>
+  </div>
+  <div class="modal-body mt-3">
+    <form class="form">
+      <span>Chọn file dữ liệu*</span>
+      <div class="d-flex">
+        <span class="flex-fill"></span>
+        <button class="btn btn-outline-primary">
+          <i class="fa-solid fa-file-excel"></i>
+          Chọn file
+        </button>
+      </div>
+      <button class="btn btn-outline-secondary mt-3">
+        <i class="fa-solid fa-file-export"></i>Import dữ liệu
+      </button>
+      <button class="btn btn-outline-secondary mt-3">
+        <i class="fa-solid fa-file-import"></i>Tải file mẫu
+      </button>
+    </form>
+
+    <!-- Table -->
+
+    <!-- <div class="card-body mt-3">
+      <div class="table-responsive angular-bootstrap-table">
+        <table
+          mat-table
+          class="table table-head-custom table-primary table-vertical-center overflow-hidden"
+        >
+          <ng-container matColumnDef="#">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>#</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                <td mat-cell>
+                    <div class="row">
+                        <span></span>
+                    </div>
+                </td>
+            </tbody>
+          </ng-container>
+          <ng-container matColumnDef="MaHang">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>Mã Hàng</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="TenMH">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>Tên Mặt Hàng</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="TenK">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>Tên Khác</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="DonGia">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>Đơn giá</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="IdLMH">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>ID loại mặt hàng</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="IdDVT">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>ID đơn vị tính</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="MoTa">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>Mô tả</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <ng-container matColumnDef="ThaoTac">
+            <thead>
+              <tr>
+                <th *matHeaderCellDef>
+                  <span>Thao Tác</span>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div> -->
+  </div>
+</div>

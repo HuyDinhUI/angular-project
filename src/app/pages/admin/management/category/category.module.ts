@@ -49,7 +49,7 @@ const routes: Routes = [
       },
       {
         path: 'reasonassest',
-        component: ListReasonAssestManagmentComponent,
+        loadChildren: () => import('./management-list-reason-assest/management-list-reason-assest.module').then((m) => m.ListReasonTypeAssestManagementModule)
       },
       {
         path: 'produce',
@@ -61,7 +61,7 @@ const routes: Routes = [
       },
       {
         path: 'groupassest',
-        component: ListGroupAssestManagmentComponent,
+        loadChildren: () => import('./management-list-group-assest/management-list-group-assest.module').then((m) => m.ListGroupTypeAssestManagementModule)
       },
       {
         path: 'brand',
