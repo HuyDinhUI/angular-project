@@ -10,12 +10,21 @@ import {
   PaginatorState,
   SortState,
 } from '../../../../../_metronic/shared/crud-table';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DateFilterCustomer } from '../../../CustomersManagement/Model/DateFilter-customer.model';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  debounceTime,
+  distinctUntilChanged,
+  Subscription,
+  switchMap,
+} from 'rxjs';
 import { showSearchFormModel } from '../../../_shared/jee-search-form/jee-search-form.model';
 import { ListProductManagementService } from '../services/list-product-management.service';
-import { LayoutUtilsService, MessageType } from '../../../_core/utils/layout-utils.service';
+import {
+  LayoutUtilsService,
+  MessageType,
+} from '../../../_core/utils/layout-utils.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
@@ -42,7 +51,7 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
   grouping: GroupingState;
   isLoading: boolean;
   filterGroup: FormGroup;
-  searchGroup: FormGroup;
+  searchControl = new FormControl();
   dateFilter: DateFilterCustomer;
   laodingDateFilter$ = new BehaviorSubject<boolean>(false);
   private subscriptions: Subscription[] = [];
@@ -61,7 +70,6 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
   itemIds: number[] = [];
   selection2 = new SelectionModel<number>(true, []);
 
-  
   constructor(
     private router: Router,
     private changeDetect: ChangeDetectorRef,
@@ -83,12 +91,16 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     this.listUnitManagementService.fetch();
     this.listBrandManagementService.fetch();
     this.listProduceManagementService.fetch();
-    
-    this.listProductManagementService.items$.subscribe(data =>{
-        data.forEach(element => {
-            this.itemIds.push(element.IdMH)
-        })
-    })
+
+    this.listProductManagementService.items$.subscribe((data) => {
+      data.forEach((element) => {
+        this.itemIds.push(element.IdMH);
+      });
+    });
+
+    this.searchControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((val) => this.search(val));
 
     this.grouping = this.listProductManagementService.grouping;
     this.paginator = this.listProductManagementService.paginator;
@@ -115,63 +127,99 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
       : this.itemIds.forEach((row) => this.selection2.select(row));
   }
 
-  import(){
-    const saveMessage = 'IMPORT THÀNH CÔNG'
+  import() {
+    const saveMessage = 'IMPORT THÀNH CÔNG';
     const messageType = MessageType.Create;
-    const dialogRef =  this.dialog.open(ImportProductDialogComponent,{
+    const dialogRef = this.dialog.open(ImportProductDialogComponent, {
       data: {},
       panelClass: 'custom-dialog',
-      maxWidth:'none',
+      maxWidth: 'none',
       width: '900px',
-      disableClose: true
-    })
+      disableClose: true,
+    });
     dialogRef.afterClosed().subscribe((res) => {
-      if (!res){
-        this.listProductManagementService.fetch()
-      } else{
-        this.layoutUtilsService.showActionNotification(saveMessage,messageType,4000,true,false)
-        this.listProductManagementService.fetch()
+      if (!res) {
+        this.listProductManagementService.fetch();
+      } else {
+        this.layoutUtilsService.showActionNotification(
+          saveMessage,
+          messageType,
+          4000,
+          true,
+          false
+        );
+        this.listProductManagementService.fetch();
       }
-    })
+    });
   }
 
   filterLoaiMatHang(value: number) {
     const filter = {};
-    filter['IdLMH'] = value;
-    this.listProductManagementService.patchState({ filter});
+    if (value == 0) {
+      this.listProductManagementService.patchState({ filter });
+    } else {
+      filter['IdLMH'] = value;
+      this.listProductManagementService.patchState({ filter });
+    }
   }
 
-  filterDonViTinh(value: number){
-    const filter =  {}
-    filter['IdDVT'] = value;
-    this.listProductManagementService.patchState({filter})
+  filterDonViTinh(value: number) {
+    const filter = {};
+    if (value == 0){
+      this.listProductManagementService.patchState({filter})
+    }
+    else{
+      filter['IdDVT'] = value;
+      this.listProductManagementService.patchState({ filter });
+    }
+   
   }
 
-  filterNhanHieu(value: number){
-    const filter ={}
-    filter['IdNhanHieu'] = value;
-    this.listProductManagementService.patchState({filter})
+  filterNhanHieu(value: number) {
+    const filter = {};
+    if (value == 0){
+      this.listProductManagementService.patchState({filter})
+    }
+    else{
+      filter['IdNhanHieu'] = value;
+      this.listProductManagementService.patchState({ filter });
+    }
+    
   }
 
-  filterXuatXu(value: number){
-    const filter = {}
-    filter['IdXuatXu'] = value;
-    this.listProductManagementService.patchState({filter})
+  filterXuatXu(value: number) {
+    const filter = {};
+    if (value == 0){
+      this.listProductManagementService.patchState({filter})
+    }
+    else{
+      filter['IdXuatXu'] = value;
+      this.listProductManagementService.patchState({ filter });
+    }
+    
   }
 
-  add(){
-    this.router.navigate(['/management/category/listproduct/add'],{
-      queryParams:{}
-    })
+  search(searchTerm: string) {
+    this.listProductManagementService.patchState({ searchTerm });
   }
 
-  deleteProduct(item: any){
-    const message = "Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác."
-    const dialog = this.layoutUtilsService.deleteElement('',message)
-    dialog.afterClosed().subscribe((x)=>{
-      if (x){
-        
+  paginate(paginator: PaginatorState) {
+    this.listProductManagementService.patchState({ paginator });
+  }
+
+  add() {
+    this.router.navigate(['/management/category/listproduct/add'], {
+      queryParams: {},
+    });
+  }
+
+  deleteProduct(item: any) {
+    const message =
+      'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
+    const dialog = this.layoutUtilsService.deleteElement('', message);
+    dialog.afterClosed().subscribe((x) => {
+      if (x) {
       }
-    })
+    });
   }
 }
