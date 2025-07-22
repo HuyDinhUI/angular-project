@@ -55,7 +55,7 @@
 <ng-container *ngFor="let pageNumber of pages">
   <a
     *ngIf="isEllipsis(pageNumber)"
-    class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1"
+    class="btn btn-icon border-0 btn-light mr-2 my-1"
     tabindex="-1"
     aria-disabled="true"
     [class.active]="pageNumber === page"
@@ -69,7 +69,7 @@
   </a>
   <a
     *ngIf="!isEllipsis(pageNumber)"
-    class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1"
+    class="btn btn-icon border-0 btn-light mr-2 my-1"
     (click)="selectPage(pageNumber); $event.preventDefault()"
     [attr.tabindex]="disabled ? '-1' : null"
     [attr.aria-disabled]="disabled ? 'true' : null"
@@ -90,7 +90,7 @@
 <a
   aria-label="Next"
   i18n-aria-label="@@ng.pagination.next-aria"
-  class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"
+  class="btn btn-icon btn-light btn-hover-primary mr-2 my-1"
   (click)="selectPage(page + 1); $event.preventDefault()"
   [attr.tabindex]="nextDisabled() ? '-1' : null"
   [attr.aria-disabled]="nextDisabled() ? 'true' : null"
@@ -108,7 +108,7 @@
 <a
   aria-label="Last"
   i18n-aria-label="@@ng.pagination.last-aria"
-  class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"
+  class="btn btn-icon btn-light btn-hover-primary mr-2 my-1"
   (click)="selectPage(pageCount); $event.preventDefault()"
   [attr.tabindex]="nextDisabled() ? '-1' : null"
   [attr.aria-disabled]="nextDisabled() ? 'true' : null"

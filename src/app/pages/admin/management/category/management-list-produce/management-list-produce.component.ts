@@ -89,7 +89,7 @@ export class ListProduceManagmentComponent implements OnInit, OnDestroy {
       maxWidth: 'none',
       width: '900px',
       disableClose: true,
-    });
+    }); 
     dialogRef.afterClosed().subscribe((res) => {
       if (!res) {
         this.listProduceManagementService.fetch();

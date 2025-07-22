@@ -41,7 +41,7 @@
         <ng-container matColumnDef="select">
           <thead>
             <tr>
-              <th *matHeaderCellDef style="padding: 2px;background-color:rgb(208, 255, 208);color:green !important">
+              <th *matHeaderCellDef style="padding: 2px;">
                 <mat-checkbox
                   (change)="$event ? masterToggle() : null"
                   [checked]="selection2.hasValue() && isAllSelected()"
@@ -63,7 +63,7 @@
         <ng-container matColumnDef="#">
           <thead>
             <tr class="table-primary">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th *matHeaderCellDef class="" >
                 <span>#</span>
                 
               </th>
@@ -81,7 +81,7 @@
         <ng-container matColumnDef="TenXuatXu">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th *matHeaderCellDef class="">
                 <span>Tên nhãn hiệu</span>
                
               </th>
@@ -98,7 +98,7 @@
         <ng-container matColumnDef="ThaoTac">
           <thead>
             <tr class="table-priamry">
-              <th *matHeaderCellDef class="" style="background-color:rgb(208, 255, 208);color:green !important">
+              <th *matHeaderCellDef class="">
                 <span>Thao tác</span>
                 
               </th>
