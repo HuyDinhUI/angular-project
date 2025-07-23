@@ -1,16 +1,14 @@
 <ng-template #first>
-  <i class="fa-solid fa-chevron-left"></i>
-  <i class="fa-solid fa-chevron-left"></i>
+  <span>&laquo;</span>
 </ng-template>
 <ng-template #previous>
-  <i class="fa-solid fa-chevron-left"></i>
+ <span>&lsaquo;</span>
 </ng-template>
 <ng-template #next>
-  <i class="fa-solid fa-chevron-right"></i>
+  <span>&rsaquo;</span>
 </ng-template>
 <ng-template #last>
-  <i class="fa-solid fa-chevron-right"></i>
-  <i class="fa-solid fa-chevron-right"></i>
+  <span>&raquo;</span>
 </ng-template>
 <ng-template #ellipsis>...</ng-template>
 <ng-template #defaultNumber let-page let-currentPage="currentPage">
@@ -22,7 +20,7 @@
   [class.disabled]="previousDisabled()"
   aria-label="First"
   i18n-aria-label="@@ng.pagination.first-aria"
-  class="btn btn-icon btn-sm btn-light btn-hover-primary mr-2 my-1"
+  class="btn btn-icon btn-light btn-hover-primary mr-2 my-1"
   href
   (click)="selectPage(1); $event.preventDefault()"
   [attr.tabindex]="previousDisabled() ? '-1' : null"
@@ -55,7 +53,7 @@
 <ng-container *ngFor="let pageNumber of pages">
   <a
     *ngIf="isEllipsis(pageNumber)"
-    class="btn btn-icon border-0 btn-light mr-2 my-1"
+    class="btn btn-icon btn-light btn-hover-primary mr-2 my-1"
     tabindex="-1"
     aria-disabled="true"
     [class.active]="pageNumber === page"
@@ -69,7 +67,7 @@
   </a>
   <a
     *ngIf="!isEllipsis(pageNumber)"
-    class="btn btn-icon border-0 btn-light mr-2 my-1"
+    class="btn btn-icon btn-light btn-hover-primary mr-2 my-1"
     (click)="selectPage(pageNumber); $event.preventDefault()"
     [attr.tabindex]="disabled ? '-1' : null"
     [attr.aria-disabled]="disabled ? 'true' : null"

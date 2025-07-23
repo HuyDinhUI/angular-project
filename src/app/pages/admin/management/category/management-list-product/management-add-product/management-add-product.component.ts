@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ProductsModel } from '../../model/list-product-management.model';
+import { ListProductDeleteModel, ProductsModel } from '../../model/list-product-management.model';
 import { ListProductManagementService } from '../../services/list-product-management.service';
 import {
   LayoutUtilsService,
@@ -70,8 +70,8 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
       quydoidonvitinhcap2: [0, Validators.compose([Validators.required])],
       donvitinhcap3: ['', Validators.compose([Validators.required])],
       quydoidonvitinhcap3: [0, Validators.compose([Validators.required])],
-      theodoilo: [''],
-      lataisan: [''],
+      theodoilo: [false],
+      lataisan: [false],
       mota: ['', Validators.compose([Validators.required])],
       motachitiet: ['', Validators.compose([Validators.required])],
     });
@@ -130,7 +130,8 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
             true,
             false,
           );
-          this.resetForm();
+          this.listProductManagement.fetch()
+          
         } else {
           this.layoutUtilsService.showActionNotification(
             res.error.message,
@@ -151,4 +152,6 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
   resetForm() {
     this.formGroup.reset();
   }
+
+  
 }

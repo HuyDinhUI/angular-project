@@ -28,6 +28,12 @@ export class ProductsModel {
   IsTaisan: boolean
   Mota: string
   ChiTietMoTa: string
+}
 
-  
+export class ListProductDeleteModel {
+  LstProductsDelete: number[]
+
+  constructor(){
+    this.LstProductsDelete = []
+  }
 }

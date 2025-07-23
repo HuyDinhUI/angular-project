@@ -7,7 +7,7 @@ import {
   SortState,
 } from '../../../../../_metronic/shared/crud-table';
 import { ITableService } from '../../../../../_metronic/core/services/itable.service';
-import { ProductsModel, ProductsModelDTO } from '../model/list-product-management.model';
+import { ListProductDeleteModel, ProductsModel, ProductsModelDTO } from '../model/list-product-management.model';
 import { HttpClient } from '@angular/common/http';
 import { HttpUtilService } from '../../../_core/utils/http-utils.service';
 import { Observable } from 'rxjs';
@@ -57,5 +57,12 @@ export class ListProductManagementService
     const httpHeaders = this.httpUtils.getHTTPHeaders();
     const url = API_PRODUCTS_URL;
     return this.http.post<any>(url, item, { headers: httpHeaders });
-  } 
+  }
+  
+  public deleteProduct(item: ListProductDeleteModel):Observable<any>{
+    console.log(item)
+    const httpHeaders = this.httpUtils.getHTTPHeaders();
+    const url = API_PRODUCTS_URL;
+    return this.http.delete<any>(url, {headers: httpHeaders,body: item});
+  }
 }

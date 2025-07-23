@@ -31,7 +31,10 @@ import { AuthService } from '../../../../../modules/auth/_services/auth.service'
 import { SelectionModel } from '@angular/cdk/collections';
 import { tap } from 'lodash';
 import { ResultModel } from '../../../_core/models/_base.model';
-import { ProductsModelDTO } from '../model/list-product-management.model';
+import {
+  ListProductDeleteModel,
+  ProductsModelDTO,
+} from '../model/list-product-management.model';
 import { ImportProductDialogComponent } from './management-import-product-dialog/managemnt-import-product-dialog.component';
 import { Router } from '@angular/router';
 import { TypeProductManagementService } from '../services/type-product-managment.service';
@@ -165,38 +168,32 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
 
   filterDonViTinh(value: number) {
     const filter = {};
-    if (value == 0){
-      this.listProductManagementService.patchState({filter})
-    }
-    else{
+    if (value == 0) {
+      this.listProductManagementService.patchState({ filter });
+    } else {
       filter['IdDVT'] = value;
       this.listProductManagementService.patchState({ filter });
     }
-   
   }
 
   filterNhanHieu(value: number) {
     const filter = {};
-    if (value == 0){
-      this.listProductManagementService.patchState({filter})
-    }
-    else{
+    if (value == 0) {
+      this.listProductManagementService.patchState({ filter });
+    } else {
       filter['IdNhanHieu'] = value;
       this.listProductManagementService.patchState({ filter });
     }
-    
   }
 
   filterXuatXu(value: number) {
     const filter = {};
-    if (value == 0){
-      this.listProductManagementService.patchState({filter})
-    }
-    else{
+    if (value == 0) {
+      this.listProductManagementService.patchState({ filter });
+    } else {
       filter['IdXuatXu'] = value;
       this.listProductManagementService.patchState({ filter });
     }
-    
   }
 
   search(searchTerm: string) {
@@ -213,12 +210,74 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteProduct(item: any) {
+  deleteProduct(id: number) {
     const message =
       'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
     const dialog = this.layoutUtilsService.deleteElement('', message);
+    const model = new ListProductDeleteModel();
+    model.LstProductsDelete.push(id);
     dialog.afterClosed().subscribe((x) => {
       if (x) {
+        this.listProductManagementService.deleteProduct(model).subscribe((res) =>{
+          if (res && res.status === 1){
+            this.layoutUtilsService.showActionNotification(
+            'Xóa thành công',
+            MessageType.Delete,
+            4000,
+            true,
+            false,
+          );
+          this.listProductManagementService.fetch()
+        } else {
+          this.layoutUtilsService.showActionNotification(
+            res.error.message,
+            MessageType.Read,
+            999999999,
+            true,
+            false,
+            3000,
+            'top',
+            0
+          );
+          }
+        });
+      }
+    });
+  }
+
+  deleteListProducts(){
+    const message =
+      'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
+    const dialog = this.layoutUtilsService.deleteElement('', message);
+    const model = new ListProductDeleteModel();
+    console.log(this.selection2)
+    model.LstProductsDelete = this.selection2.selected
+
+    dialog.afterClosed().subscribe((x) => {
+      if (x) {
+        this.listProductManagementService.deleteProduct(model).subscribe((res) =>{
+          if (res && res.status === 1){
+            this.layoutUtilsService.showActionNotification(
+            'Xóa thành công',
+            MessageType.Delete,
+            4000,
+            true,
+            false,
+          );
+          this.listProductManagementService.fetch()
+        } else {
+          this.layoutUtilsService.showActionNotification(
+            res.error.message,
+            MessageType.Read,
+            999999999,
+            true,
+            false,
+            3000,
+            'top',
+            0
+          );
+          }
+        });
       }
     });
   }

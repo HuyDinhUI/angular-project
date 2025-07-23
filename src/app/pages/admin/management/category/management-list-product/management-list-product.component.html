@@ -86,14 +86,15 @@
   <div class="card-header">
     <div class="card-toolbar d-flex gap-2 align-items-center">
       <span>Số lượng đã chọn: {{ selection2.selected.length }}</span>
-      <button type="button" class="btn btn-danger">Xóa mặt hàng</button>
+      <button (click)="deleteListProducts()" type="button" class="btn btn-danger">Xóa mặt hàng</button>
     </div>
   </div>
   <div class="card-body" style="padding:10px 0 !important;">
-    <div class="table-responsive angular-bootstrap-table">
+    <div class="table-responsive angular-bootstrap-table" style="min-height: 250px;">
       <table
         mat-table
         class="table table-hover table-styling table-head-custom overflow-hidden"
+        
         [dataSource]="listProductManagementService.items$ | async"
       >
         <ng-container matColumnDef="select">
@@ -307,7 +308,7 @@
                   type="button"
                   class="btn"
                   style="margin-left: 0px !important; padding: 0 !important"
-                  (click)="deleteProduct(r)"
+                  (click)="deleteProduct(r.IdMH)"
                 >
                   <i class="fa-solid fa-trash text-danger"></i>
                 </button>
