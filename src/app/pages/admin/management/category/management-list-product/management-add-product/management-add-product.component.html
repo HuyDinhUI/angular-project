@@ -72,7 +72,9 @@
             <mat-form-field appearance="fill" class="col">
               <mat-label>Loại mặt hàng</mat-label>
               <mat-select formControlName="loaimathang">
-                <mat-option value="1">Mặt hàng A</mat-option>
+                <mat-option *ngFor="let item of listTypeProductManagement.items$ | async" [value]="item.IdLMH">
+                  {{item.TenLMH}}
+                </mat-option>
               </mat-select>
               <mat-error
             *ngIf="
@@ -88,7 +90,9 @@
             <mat-form-field class="col px-2">
               <mat-label>Đơn vị tính</mat-label>
               <mat-select formControlName="donvitinh"> 
-                <mat-option> </mat-option>
+                <mat-option *ngFor="let item of listUnitManagement.items$ | async" [value]="item.IdDVT">
+                  {{item.TenDVT}}
+                </mat-option>
               </mat-select>
               <mat-error
             *ngIf="
@@ -221,7 +225,9 @@
             <mat-form-field appearance="fill">
               <mat-label>Đơn vị tính cấp 2</mat-label>
               <mat-select formControlName="donvitinhcap2">
-                <mat-option></mat-option>
+                <mat-option *ngFor="let item of listUnitManagement.items$ | async" [value]="item.IdDVT">
+                  {{item.TenDVT}}
+                </mat-option>
               </mat-select>
               <mat-error
             *ngIf="
@@ -251,7 +257,9 @@
             <mat-form-field appearance="fill" class="p-2">
               <mat-label>Đơn vị tính cấp 3</mat-label>
               <mat-select formControlName="donvitinhcap3">
-                <mat-option></mat-option>
+                <mat-option *ngFor="let item of listUnitManagement.items$ | async" [value]="item.IdDVT">
+                  {{item.TenDVT}}
+                </mat-option>
               </mat-select>
               <mat-error
             *ngIf="
@@ -280,11 +288,11 @@
           </div>
           <div class="form-group d-flex w-50">
             <div class="d-flex align-items-center col">
-              <mat-checkbox></mat-checkbox>
+              <mat-checkbox formControlName="theodoilo"></mat-checkbox>
               <mat-label>Theo dõi lô</mat-label>
             </div>
             <div class="d-flex align-items-center col">
-              <mat-checkbox></mat-checkbox>
+              <mat-checkbox formControlName="lataisan"></mat-checkbox>
               <mat-label>Là tài sản</mat-label>
             </div>
           </div>

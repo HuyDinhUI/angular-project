@@ -1,4 +1,4 @@
-<div class="card card-custom gutter-br position-relative" style="height: 650px">
+<div class="card card-custom gutter-br position-relative">
   <div
     class="card-header d-flex justify-content-between align-items-center"
     style="padding: 10px 20px !important"
@@ -89,11 +89,11 @@
       <button type="button" class="btn btn-danger">Xóa mặt hàng</button>
     </div>
   </div>
-  <div class="row">
-    <div class="table-responsive">
+  <div class="card-body" style="padding:10px 0 !important;">
+    <div class="table-responsive angular-bootstrap-table">
       <table
         mat-table
-        class="table table-hover table-styling table-head-custom"
+        class="table table-hover table-styling table-head-custom overflow-hidden"
         [dataSource]="listProductManagementService.items$ | async"
       >
         <ng-container matColumnDef="select">
