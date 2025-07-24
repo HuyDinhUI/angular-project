@@ -12,8 +12,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { ListProductDeleteModel, ProductsModel } from '../../model/list-product-management.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ListProductDeleteModel,
+  ProductsModel,
+  ProductsModelDTO,
+} from '../../model/list-product-management.model';
 import { ListProductManagementService } from '../../services/list-product-management.service';
 import {
   LayoutUtilsService,
@@ -21,17 +25,26 @@ import {
 } from '../../../../_core/utils/layout-utils.service';
 import { ListUnittManagementService } from '../../services/list-unit-management.service';
 import { TypeProductManagementService } from '../../services/type-product-managment.service';
+import {
+  ResultModel,
+  ResultObjModel,
+} from '../../../../_core/models/_base.model';
+import { map } from 'lodash';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'management-add-product',
-  templateUrl: 'management-add-product.component.html',
+  templateUrl: 'management-edit-product.component.html',
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ManagementAddProductComponent implements OnInit, OnDestroy {
+export class ManagementEditProductComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-
+  idParam: any;
+  productModel$: Observable<ProductsModel>;
+  private subscription: Subscription[] = [];
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private listProductManagement: ListProductManagementService,
@@ -41,9 +54,37 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.idParam = this.route.snapshot.paramMap.get('id');
+    this.loadForm();
     this.listUnitManagement.fetch();
     this.listTypeProductManagement.fetch();
-    this.loadForm();
+    this.listProductManagement.getItemById(+this.idParam).subscribe((res) => {
+      console.log('Dữ liệu trả về:', res);
+      this.formGroup.patchValue({
+        mahang: res.data.MaHang,
+        tenmathang: res.data.TenMatHang,
+        loaimathang: res.data.IdLMH,
+        donvitinh: res.data.IdDVT,
+        sokytinhkhauhaotoithieu: res. data.SoKyTinhKhauHaoToiThieu,
+        sokytinhkhauhaotoida: res.data.SoKyTinhKhauHaoToiDa,
+        tenonsite: res.data.TenOnSite,
+        vat: res.data.VAT,
+        giamua: res.data.GiaMua,
+        giaban: res.data.GiaBan,
+        dinhmuctoithieu: res.data.LowerLimit,
+        dinhmuctoida: res.data.UpperLimit,
+        donvitinhcap2: res.data.IdDVTCap2,
+        quydoidonvitinhcap2: res.data.QuyDoiDVTCap2,
+        donvitinhcap3: res.data.IdDVTCap3,
+        quydoidonvitinhcap3: res.data.QuyDoiDVTCap3,
+        theodoilo: res.data.Theodoilo,
+        lataisan: res.data.IsTaiSan,
+        mota: res.data.Mota,
+        motachitiet: res.data.ChiTietMoTa
+      });
+    });
+   
+    
   }
 
   ngOnDestroy(): void {}
@@ -90,7 +131,7 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
 
   prepareData(): ProductsModel {
     let model = new ProductsModel();
-    model.MaHang = this.formGroup.controls['mahang'].value
+    model.MaHang = this.formGroup.controls['mahang'].value;
     model.IdLMH = this.formGroup.controls['loaimathang'].value;
     model.TenMatHang = this.formGroup.controls['tenmathang'].value;
     model.IdDVT = this.formGroup.controls['donvitinh'].value;
@@ -117,21 +158,20 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.formGroup.controls['theodoilo'].value);
+   
     if (this.formGroup.valid) {
       const model = this.prepareData();
-      console.log(model)
-      this.listProductManagement.createProduct(model).subscribe((res) => {
+      console.log(model);
+      this.listProductManagement.updateProduct(this.idParam,model).subscribe((res) => {
         if (res && res.status === 1) {
           this.layoutUtilsService.showActionNotification(
-            'Thêm thành công',
-            MessageType.Create,
+            'Cập nhật thành công',
+            MessageType.Update,
             4000,
             true,
-            false,
+            false
           );
-          this.listProductManagement.fetch()
-          
+          this.listProductManagement.fetch();
         } else {
           this.layoutUtilsService.showActionNotification(
             res.error.message,
@@ -152,6 +192,4 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
   resetForm() {
     this.formGroup.reset();
   }
-
-  
 }

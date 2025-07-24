@@ -7,6 +7,7 @@ import { JeeCustomerModule } from "../../../../jee-customer.module";
 import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { TranslateModule } from "@ngx-translate/core";
 import { ListProductManagementService } from "../services/list-product-management.service";
+import { ManagementEditProductComponent } from "./management-edit-product-dialog/management-edit-product.component"
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
             {
                 path:'add',
                 component:ManagementAddProductComponent
+            },
+            {
+                path: 'edit/:id',
+                component:ManagementEditProductComponent
             }
         ]
     }
@@ -24,7 +29,8 @@ const routes: Routes = [
 @NgModule({
     declarations:[
         ListProudctManagmentComponent,
-        ManagementAddProductComponent
+        ManagementAddProductComponent,
+        ManagementEditProductComponent
     ],
     imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
     providers: [

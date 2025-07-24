@@ -1,0 +1,343 @@
+<div
+  class="position-absolute top-0 left-0 text-bg-light z-3 container-fluid py-3"
+  style="
+    height: 100%;
+    z-index: 999 !important;
+    border-radius: 6px;
+    background-color: white !important;
+  "
+>
+  <div
+    class="card-header d-flex justify-content-between"
+    style="padding: 10px !important"
+  >
+    <div class="card-title">
+      <span class="fw-bold">THÊM MỚI MẶT HÀNG</span>
+    </div>
+    <div class="card-toolbar">
+      <button (click)="goBack()" class="btn btn-secondary">
+        &xlarr; TRỞ VỀ
+      </button>
+      <button (click)="resetForm()" class="btn btn-secondary">
+        <i class="fa-solid fa-gear"></i>
+        ĐẶT LẠI
+      </button>
+      <button (click)="onSubmit()" class="btn btn-primary">
+        <i class="fa-solid fa-floppy-disk"></i>
+        LƯU
+      </button>
+    </div>
+  </div>
+  <div class="card-body" style="height: 300px; padding: 5px !important">
+    <form [formGroup]="formGroup" class="form needs-validation" novalidate>
+      <div class="d-flex gap-3">
+        <mat-form-field class="flex-md-fill">
+          <mat-label class="">Mã hàng</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="mahang"
+            required
+          />
+          <mat-error
+            *ngIf="
+              formGroup.get('mahang')?.touched &&
+              formGroup.get('mahang')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-md-fill">
+          <mat-label class="">Tên mặt hàng</mat-label>
+          <input type="text" formControlName="tenmathang" matInput required />
+          <mat-error
+            *ngIf="
+              formGroup.get('tenmathang')?.touched &&
+              formGroup.get('tenmathang')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-tab-group>
+        <mat-tab label="Thông tin cơ bản">
+          <div
+            class="form-group row-cols-4 mt-3"
+            style="margin-bottom: 0 !important"
+          >
+            <mat-form-field appearance="fill" class="col">
+              <mat-label>Loại mặt hàng</mat-label>
+              <mat-select formControlName="loaimathang">
+                <mat-option *ngFor="let item of listTypeProductManagement.items$ | async" [value]="item.IdLMH">
+                  {{item.TenLMH}}
+                </mat-option>
+              </mat-select>
+              <mat-error
+            *ngIf="
+              formGroup.get('loaimathang')?.touched &&
+              formGroup.get('loaimathang')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>Đơn vị tính</mat-label>
+              <mat-select formControlName="donvitinh"> 
+                <mat-option *ngFor="let item of listUnitManagement.items$ | async" [value]="item.IdDVT">
+                  {{item.TenDVT}}
+                </mat-option>
+              </mat-select>
+              <mat-error
+            *ngIf="
+              formGroup.get('donvitinh')?.touched &&
+              formGroup.get('donvitinh')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label >Số kỳ tính khấu hao tối thiểu</mat-label>
+              <input formControlName="sokytinhkhauhaotoithieu" value="0" matInput />
+              <mat-error
+            *ngIf="
+              formGroup.get('sokytinhkhauhaotoithieu')?.touched &&
+              formGroup.get('sokytinhkhauhaotoithieu')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>Số kỳ tính khấu hao tối đa</mat-label>
+              <input formControlName="sokytinhkhauhaotoida" value="0" matInput />
+              <mat-error
+            *ngIf="
+              formGroup.get('spkytinhkhautoida')?.touched &&
+              formGroup.get('spkytinhkhautoida')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col">
+              <mat-label>Tên On Site</mat-label>
+              <input formControlName="tenonsite" matInput />
+              <mat-error
+            *ngIf="
+              formGroup.get('tenonsite')?.touched &&
+              formGroup.get('tenonsite')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col px-2">
+              <mat-label>VAT</mat-label>
+              <input formControlName="vat" value="0" matInput />
+              <mat-error
+            *ngIf="
+              formGroup.get('vat')?.touched &&
+              formGroup.get('vat')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div
+            class="form-group row-cols-4"
+            style="margin-bottom: 0 !important"
+          >
+            <mat-form-field appearance="fill">
+              <mat-label>Giá mua</mat-label>
+              <input formControlName="giamua" matInput value="0" />
+              <mat-error
+            *ngIf="
+              formGroup.get('giamua')?.touched &&
+              formGroup.get('giamua')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="p-2">
+              <mat-label>Giá bán</mat-label>
+              <input formControlName="giaban" matInput value="0" />
+              <mat-error
+            *ngIf="
+              formGroup.get('giaban')?.touched &&
+              formGroup.get('giaban')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="p-2">
+              <mat-label>Đinh mức tối thiểu</mat-label>
+              <input formControlName="dinhmuctoithieu" matInput value="0" />
+              <mat-error
+            *ngIf="
+              formGroup.get('dinhmuctoithieu')?.touched &&
+              formGroup.get('dinhmuctoithieu')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="p-2">
+              <mat-label>Đinh mức tối đa</mat-label>
+              <input formControlName="dinhmuctoida" matInput value="0" />
+              <mat-error
+            *ngIf="
+              formGroup.get('dinhmuctoida')?.touched &&
+              formGroup.get('dinhmuctoida')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Đơn vị tính cấp 2</mat-label>
+              <mat-select formControlName="donvitinhcap2">
+                <mat-option *ngFor="let item of listUnitManagement.items$ | async" [value]="item.IdDVT">
+                  {{item.TenDVT}}
+                </mat-option>
+              </mat-select>
+              <mat-error
+            *ngIf="
+              formGroup.get('donvitinhcap2')?.touched &&
+              formGroup.get('donvitinhcap2')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="p-2">
+              <mat-label>Quy đổi đơn vị tính cấp 2</mat-label>
+              <input formControlName="quydoidonvitinhcap2" matInput value="0" />
+              <mat-error
+            *ngIf="
+              formGroup.get('quydoidonvitinhcap2')?.touched &&
+              formGroup.get('quydoidonvitinhcap2')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="p-2">
+              <mat-label>Đơn vị tính cấp 3</mat-label>
+              <mat-select formControlName="donvitinhcap3">
+                <mat-option *ngFor="let item of listUnitManagement.items$ | async" [value]="item.IdDVT">
+                  {{item.TenDVT}}
+                </mat-option>
+              </mat-select>
+              <mat-error
+            *ngIf="
+              formGroup.get('donvitinhcap3')?.touched &&
+              formGroup.get('donvitinhcap3')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="p-2">
+              <mat-label>Quy đổi đơn vị tính cấp 3</mat-label>
+              <input formControlName="quydoidonvitinhcap3" matInput value="0" />
+              <mat-error
+            *ngIf="
+              formGroup.get('quydoidonvitinhcap3')?.touched &&
+              formGroup.get('quydoidonvitinhcap3')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group d-flex w-50">
+            <div class="d-flex align-items-center col">
+              <mat-checkbox formControlName="theodoilo"></mat-checkbox>
+              <mat-label>Theo dõi lô</mat-label>
+            </div>
+            <div class="d-flex align-items-center col">
+              <mat-checkbox formControlName="lataisan"></mat-checkbox>
+              <mat-label>Là tài sản</mat-label>
+            </div>
+          </div>
+          <div class="form-group d-flex gap-3">
+            <mat-form-field class="d-flex align-items-center col">
+              <mat-label>Mô tả</mat-label>
+              <input formControlName="mota" matInput />
+              <mat-error
+            *ngIf="
+              formGroup.get('mota')?.touched &&
+              formGroup.get('mota')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+            <mat-form-field class="d-flex align-items-center col">
+              <mat-label>Chi tiết mô tả</mat-label>
+              <input formControlName="motachitiet" matInput />
+              <mat-error
+            *ngIf="
+              formGroup.get('motachitiet')?.touched &&
+              formGroup.get('motachitiet')?.invalid
+            "
+            style="color: red;font-size:10px"
+          >
+            Trường này là bắt buộc
+          </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Thông tin phụ">
+          <!-- Nội dung form thông tin phụ -->
+        </mat-tab>
+
+        <mat-tab label="Hình ảnh chính">
+          <!-- Upload hình ảnh -->
+        </mat-tab>
+
+        <mat-tab label="Hình ảnh phụ">
+          <!-- Upload hình ảnh phụ -->
+        </mat-tab>
+      </mat-tab-group>
+    </form>
+  </div>
+</div>

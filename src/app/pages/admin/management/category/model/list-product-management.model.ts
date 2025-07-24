@@ -20,8 +20,8 @@ export class ProductsModel {
   GiaBan: number
   UpperLimit: number
   LowerLimit: number
-  QdDVTCap2: number
-  QdDVTCap3: number
+  QuyDoiDVTCap2: number
+  QuyDoiDVTCap3: number
   IdDVTCap2: number
   IdDVTCap3: number
   Theodoilo: boolean

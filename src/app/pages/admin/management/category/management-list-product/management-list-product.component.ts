@@ -210,6 +210,10 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     });
   }
 
+  edit(id: number){
+    this.router.navigate(['/management/category/listproduct/edit/'+ id])
+  }
+
   deleteProduct(id: number) {
     const message =
       'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';

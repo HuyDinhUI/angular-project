@@ -10,8 +10,8 @@ import { ITableService } from '../../../../../_metronic/core/services/itable.ser
 import { ListProductDeleteModel, ProductsModel, ProductsModelDTO } from '../model/list-product-management.model';
 import { HttpClient } from '@angular/common/http';
 import { HttpUtilService } from '../../../_core/utils/http-utils.service';
-import { Observable } from 'rxjs';
-import { ResultModel } from '../../../_core/models/_base.model';
+import { catchError, Observable } from 'rxjs';
+import { ResultModel, ResultObjModel } from '../../../_core/models/_base.model';
 
 const API_PRODUCTS_URL =
   environment.ApiRoot + '/categorymanagement/listproduct';
@@ -64,5 +64,17 @@ export class ListProductManagementService
     const httpHeaders = this.httpUtils.getHTTPHeaders();
     const url = API_PRODUCTS_URL;
     return this.http.delete<any>(url, {headers: httpHeaders,body: item});
+  }
+
+  public getProductById(id: number): Observable<ResultObjModel<ProductsModel>>{
+    const httpHeaders = this.httpUtils.getHTTPHeaders()
+    const url = API_PRODUCTS_URL + `/${id}`
+    return this.http.get<any>(url,{headers:httpHeaders})
+  }
+
+  public updateProduct(id: number, data: ProductsModel): Observable<any>{
+    const httpHeaders = this.httpUtils.getHTTPHeaders()
+    const url = API_PRODUCTS_URL + `/${id}`
+    return this.http.put<any>(url,data,{headers:httpHeaders})
   }
 }

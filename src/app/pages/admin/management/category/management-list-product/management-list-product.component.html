@@ -67,7 +67,7 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field class="w-25">
-          <mat-label>Xuất xứ</mat-label>
+          <mat-label>Xuất sứ</mat-label>
           <mat-select (selectionChange)="filterXuatXu($event.value)">
             <mat-option value="0">
               Tất cả
@@ -286,11 +286,7 @@
                 
               >
                 <span>Thao tác</span>
-                <app-sort-icon
-                  column="ThaoTac"
-                  [activeColumn]="sorting.column"
-                  [activeDirection]="sorting.direction"
-                ></app-sort-icon>
+                
               </th>
             </tr>
           </thead>
@@ -298,6 +294,7 @@
             <td mat-cell *matCellDef="let r">
               <div class="">
                 <button
+                  (click)="edit(r.IdMH)"
                   type="button"
                   class="btn"
                   style="margin-right: 0px !important"
