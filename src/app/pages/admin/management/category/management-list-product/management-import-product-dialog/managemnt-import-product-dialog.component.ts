@@ -12,6 +12,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import * as XLSX from 'xlsx';
 import { ChangeDetectorRef } from '@angular/core';
+import { LayoutUtilsService, MessageType } from '../../../../_core/utils/layout-utils.service';
+import { ListProduceManagementService } from '../../services/list-produce-management.service';
+import { ListProductManagementService } from '../../services/list-product-management.service';
 
 @Component({
   selector: 'import-product-dialog',
@@ -41,7 +44,9 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<ImportProductDialogComponent>
+    public dialogRef: MatDialogRef<ImportProductDialogComponent>,
+    private layoutUtilsService: LayoutUtilsService,
+    public listProductManagementService: ListProductManagementService
   ) {
     this.form = this.fb.group({
       products: this.fb.array([]),
@@ -62,7 +67,16 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
 
   importData() {
     if (!this.selectedFile) {
-      alert('Chưa chọn file');
+      this.layoutUtilsService.showActionNotification(
+         'Chưa chọn file',
+            MessageType.Read,
+            4000,
+            true,
+            false,
+            3000,
+            'top',
+            0
+      )
       return;
     }
 
@@ -79,26 +93,26 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
       jsonData.forEach((row: any) => {
         this.products.push(
           this.fb.group({
-            mahang: [row["Mã hàng"]],
-            tenmathang: [row["Tên mã hàng"]],
-            loaimathang: [row["Loại mã hàng"]],
-            donvitinh: [row["Đơn vị tính"]],
-            sokytinhkhauhaotoithieu: [row["Số kỳ tính khấu hao tối thiểu"]],
-            sokytinhkhauhaotoida: [row["Số kỳ tính khấu hao tối đa"]],
-            tenonsite: [row["Tên On Site"]],
-            vat: [row["VAT"]],
-            giamua: [row["Giá mua"]],
-            giaban: [row["Giá bán"]],
-            dinhmuctoithieu: [row["Định mức tối thiểu"]],
-            dinhmuctoida: [row["Định mức tối đa"]],
-            donvitinhcap2: [row["Đơn vị tính cấp 2"]],
-            quydoidonvitinhcap2: [row["Quy đổi đơn vị tính cấp 2"]],
-            donvitinhcap3: [row["Đơn vị tính cấp 3"]],
-            quydoidonvitinhcap3: [row["Quy đổi đơn vị tính cấp 3"]],
-            theodoilo: [row["Theo dõi lô"]],
-            lataisan: [row["Là tài sản"]],
-            mota: [row["Mô tả"]],
-            motachitiet: [row["Mô tả chi tiết"]],
+            MaHang: [row["Mã hàng"]],
+            TenMatHang: [row["Tên mặt hàng"]],
+            IdLMH: [row["Loại mặt hàng"]],
+            IdDVT: [row["Đơn vị tính"]],
+            SoKyTinhKhauHaoToiThieu: [row["Số kỳ tính khấu hao tối thiểu"]],
+            SoKyTinhKhauHaoToiDa: [row["Số kỳ tính khấu hao tối đa"]],
+            TenOnSite: [row["Tên On Site"]],
+            VAT: [row["VAT"]],
+            GiaMua: [row["Giá mua"]],
+            GiaBan: [row["Giá bán"]],
+            UpperLimit: [row["Định mức tối thiểu"]],
+            LowerLimit: [row["Định mức tối đa"]],
+            IdDVTCap2: [row["Đơn vị tính cấp 2"]],
+            QuyDoiDVTCap2: [row["Quy đổi đơn vị tính cấp 2"]],
+            IdDVTCap3: [row["Đơn vị tính cấp 3"]],
+            QuyDoiDVTCap3: [row["Quy đổi đơn vị tính cấp 3"]],
+            Theodoilo: [row["Theo dõi lô"] == 1],
+            IsTaiSan: [row["Là tài sản"] == 1],
+            Mota: [row["Mô tả"]],
+            ChiTietMoTa: [row["Mô tả chi tiết"]],
           })
         );
       });
@@ -110,6 +124,38 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
     };
 
     reader.readAsArrayBuffer(this.selectedFile);
+  }
+
+  loadData(){
+    if (this.products.length === 0){
+      this.layoutUtilsService.showError('Chưa import dữ liệu')
+    }
+    else{
+      this.listProductManagementService.importProduct(this.products.value).subscribe(res =>{
+        if (res && res.status === 1){
+          this.layoutUtilsService.showActionNotification(
+            'Thêm thành công',
+            MessageType.Create,
+            4000,
+            true,
+            false
+          );
+          this.listProductManagementService.fetch()
+        } 
+        else{
+          this.layoutUtilsService.showActionNotification(
+            res.error.message,
+            MessageType.Read,
+            4000,
+            true,
+            false,
+            3000,
+            'top',
+            0
+          );
+        }
+      })
+    }
   }
 
   ngOnInit(): void {}

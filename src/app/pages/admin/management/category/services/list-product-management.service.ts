@@ -77,4 +77,10 @@ export class ListProductManagementService
     const url = API_PRODUCTS_URL + `/${id}`
     return this.http.put<any>(url,data,{headers:httpHeaders})
   }
+
+  public importProduct(data:ProductsModel[]): Observable<any>{
+    const httpHeaders = this.httpUtils.getHTTPHeaders()
+    const url = API_PRODUCTS_URL + '/import'
+    return this.http.post<any>(url,data,{headers:httpHeaders})
+  }
 }
