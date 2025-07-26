@@ -15,6 +15,11 @@
     <div class="text-center">
       <h1 class="">Log in</h1>
     </div>
+    <ng-container *ngIf="authService.errorMessageSubject.asObservable() | async">
+      <div class="alert alert-custom text-danger">
+        <div class="alert-text text-center">{{ authService.errorMessageSubject.asObservable() | async }}</div>
+      </div>
+    </ng-container>
     <form
       [formGroup]="loginForm"
       novalidate="novalidate"
