@@ -45,6 +45,7 @@ paginator: PaginatorState;
   ngOnInit(): void {
     this.listTypeAssetManagementService.fetch();
     this.listTypeAssetManagementService.items$.subscribe((data) => {
+      this.itemIds = []
       data.forEach((element) => {
         this.itemIds.push(element.IdLoaiTS);
       });

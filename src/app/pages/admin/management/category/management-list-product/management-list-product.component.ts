@@ -96,10 +96,14 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     this.listProduceManagementService.fetch();
 
     this.listProductManagementService.items$.subscribe((data) => {
+      this.itemIds = []
       data.forEach((element) => {
         this.itemIds.push(element.IdMH);
+        
       });
     });
+
+    
 
     this.searchControl.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
@@ -121,6 +125,8 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
   isAllSelected() {
     const numSelected = this.selection2.selected.length;
     const numRows = this.itemIds.length;
+    console.log(numSelected)
+    console.log(numRows)
     return numSelected === numRows;
   }
 
@@ -268,6 +274,7 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
             true,
             false,
           );
+          this.selection2.clear()
           this.listProductManagementService.fetch()
         } else {
           this.layoutUtilsService.showActionNotification(

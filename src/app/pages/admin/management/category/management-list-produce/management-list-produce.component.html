@@ -41,7 +41,7 @@
         <ng-container matColumnDef="select">
           <thead>
             <tr>
-              <th *matHeaderCellDef style="padding: 2px;">
+              <th *matHeaderCellDef class="text-center" style="padding: 2px;">
                 <mat-checkbox
                   (change)="$event ? masterToggle() : null"
                   [checked]="selection2.hasValue() && isAllSelected()"
@@ -51,7 +51,7 @@
             </tr>
           </thead>
           <tbody>
-            <td mat-cell *matCellDef="let r" style="padding: 2px">
+            <td mat-cell *matCellDef="let r" style="padding: 2px" class="text-center">
               <mat-checkbox
                 (click)="$event.stopPropagation()"
                 (change)="$event ? selection2.toggle(r.IdXuatXu) : null"
@@ -63,16 +63,16 @@
         <ng-container matColumnDef="#">
           <thead>
             <tr class="table-primary">
-              <th *matHeaderCellDef class="" >
-                <span>#</span>
+              <th *matHeaderCellDef class="text-center" >
+                <span>STT</span>
                 
               </th>
             </tr>
           </thead>
           <tbody>
-            <td mat-cell *matCellDef="let r">
-              <div class="row">
-                <span>{{ r.IdXuatXu }}</span>
+            <td mat-cell *matCellDef="let r; let i = index">
+              <div class="row text-center">
+                <span>{{ i + 1}}</span>
               </div>
             </td>
           </tbody>

@@ -22,6 +22,7 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
     isLoading: boolean
     filterGroup: FormGroup
     searchGroup: FormGroup
+    private subscriptions: Subscription[] = []
 
     private subsriptions: Subscription[] = []
     displayedColumns = [
@@ -52,10 +53,20 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
         this.typeProductManagementService.fetch()
 
         this.typeProductManagementService.items$.subscribe(data =>{
+            this.itemIds = []
             data.forEach(element => {
                 this.itemIds.push(element.IdLMH)
             })
         })
+
+        this.grouping = this.typeProductManagementService.grouping
+        this.paginator = this.typeProductManagementService.paginator
+        this.sorting = this.typeProductManagementService.sorting
+
+        const sb = this.typeProductManagementService.isLoading$.subscribe(
+            (res: any) => (this.isLoading = res)
+        )
+        this.subscriptions.push(sb)
     }
 
     ngOnDestroy(): void {
@@ -72,6 +83,10 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
     this.isAllSelected()
       ? this.selection2.clear()
       : this.itemIds.forEach((row) => this.selection2.select(row));
+  }
+
+  paginate(paginator: PaginatorState) {
+    this.typeProductManagementService.patchState({ paginator });
   }
 
   add(){

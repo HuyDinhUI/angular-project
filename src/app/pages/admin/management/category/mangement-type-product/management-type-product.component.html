@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="row mt-2">
-    <div class="table-responsive">
+    <div class="table-responsive angular-bootstrap-table" style="min-height: 250px;">
       <table
         mat-table
         class="table table-hover table-styling table-head-custom"
@@ -41,6 +41,7 @@
                 style="
                   padding: 2px;
                 "
+                class="text-center"
               >
                 <mat-checkbox
                   (change)="$event ? masterToggle() : null"
@@ -51,7 +52,7 @@
             </tr>
           </thead>
           <tbody>
-            <td mat-cell *matCellDef="let r" style="padding: 2px">
+            <td mat-cell *matCellDef="let r" style="padding: 2px" class="text-center">
               <mat-checkbox
                 (click)="$event.stopPropagation()"
                 (change)="$event ? selection2.toggle(r.IdLMH) : null"
@@ -65,17 +66,17 @@
             <tr class="table-primary">
               <th
                 *matHeaderCellDef
-                class=""
+                class="text-center"
                 
               >
-                <span>#</span>
+                <span>STT</span>
               </th>
             </tr>
           </thead>
           <tbody>
-            <td mat-cell *matCellDef="let r">
-              <div class="row">
-                <span>{{ r.IdLMH }}</span>
+            <td mat-cell *matCellDef="let r; let i = index">
+              <div class="row text-center">
+                <span>{{ i + 1}}</span>
               </div>
             </td>
           </tbody>
@@ -130,7 +131,7 @@
                 class=""
                 
               >
-                <span>Tên mặt hàng</span>
+                <span>Độ ưu tiên</span>
               </th>
             </tr>
           </thead>
@@ -199,6 +200,12 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
+     <app-paginator
+      class="d-flex justify-content-between align-items-center flex-wrap"
+      [paginator]="paginator"
+      [isLoading]="isLoading"
+      (paginate)="paginate($event)"
+    ></app-paginator>
   </div>
   <router-outlet></router-outlet>
 </div>

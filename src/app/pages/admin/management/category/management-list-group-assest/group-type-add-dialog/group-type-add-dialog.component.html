@@ -5,28 +5,7 @@
     <div class="modal-title h6">
       <span class="dialog-title">THÊM NHÓM TÀI SẢN</span>
     </div>
-    <div class="modal-title d-flex gap-2">
-      <button
-        (click)="goBack()"
-        class="btn btn-secondary"
-        style="margin: 0 !important"
-      >
-        &xlarr; TRỞ VỀ
-      </button>
-      <button
-        (click)="onSubmit()"
-        class="btn btn-primary"
-        style="margin: 0 !important"
-      >
-        Lưu và trở về
-      </button>
-      <button class="btn btn-primary" style="margin: 0 !important">
-        Lưu và thêm mới
-      </button>
-      <button class="btn btn-primary" style="margin: 0 !important">
-        Phóng to
-      </button>
-    </div>
+    
   </div>
   <div class="modal-body mt-3">
     <form [formGroup]="formGroup" class="d-flex gap-2 flex-wrap">
@@ -72,5 +51,26 @@
         <mat-checkbox formControlName="cohieuluc" />
       </div>
     </form>
+  </div>
+  <div class="modal-footer mt-5">
+    <div class="modal-title d-flex gap-2">
+      <button
+        (click)="goBack()"
+        class="btn btn-secondary"
+        style="margin: 0 !important"
+      >
+        &xlarr; TRỞ VỀ
+      </button>
+      <button
+        (click)="onSubmit()"
+        class="btn btn-primary"
+        style="margin: 0 !important"
+      >
+        Lưu và tiếp tục
+      </button>
+      <button class="btn btn-primary" style="margin: 0 !important">
+        Lưu và đóng
+      </button>
+    </div>
   </div>
 </div>

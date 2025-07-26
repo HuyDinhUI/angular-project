@@ -12,7 +12,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import * as XLSX from 'xlsx';
 import { ChangeDetectorRef } from '@angular/core';
-import { LayoutUtilsService, MessageType } from '../../../../_core/utils/layout-utils.service';
+import {
+  LayoutUtilsService,
+  MessageType,
+} from '../../../../_core/utils/layout-utils.service';
 import { ListProduceManagementService } from '../../services/list-produce-management.service';
 import { ListProductManagementService } from '../../services/list-product-management.service';
 
@@ -38,7 +41,7 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
   ];
 
   @ViewChild('fileInput') fileInput!: ElementRef;
-  dataSource: any
+  dataSource: any;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -68,15 +71,15 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
   importData() {
     if (!this.selectedFile) {
       this.layoutUtilsService.showActionNotification(
-         'Chưa chọn file',
-            MessageType.Read,
-            4000,
-            true,
-            false,
-            3000,
-            'top',
-            0
-      )
+        'Chưa chọn file',
+        MessageType.Read,
+        4000,
+        true,
+        false,
+        3000,
+        'top',
+        0
+      );
       return;
     }
 
@@ -93,32 +96,32 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
       jsonData.forEach((row: any) => {
         this.products.push(
           this.fb.group({
-            MaHang: [row["Mã hàng"]],
-            TenMatHang: [row["Tên mặt hàng"]],
-            IdLMH: [row["Loại mặt hàng"]],
-            IdDVT: [row["Đơn vị tính"]],
-            SoKyTinhKhauHaoToiThieu: [row["Số kỳ tính khấu hao tối thiểu"]],
-            SoKyTinhKhauHaoToiDa: [row["Số kỳ tính khấu hao tối đa"]],
-            TenOnSite: [row["Tên On Site"]],
-            VAT: [row["VAT"]],
-            GiaMua: [row["Giá mua"]],
-            GiaBan: [row["Giá bán"]],
-            UpperLimit: [row["Định mức tối thiểu"]],
-            LowerLimit: [row["Định mức tối đa"]],
-            IdDVTCap2: [row["Đơn vị tính cấp 2"]],
-            QuyDoiDVTCap2: [row["Quy đổi đơn vị tính cấp 2"]],
-            IdDVTCap3: [row["Đơn vị tính cấp 3"]],
-            QuyDoiDVTCap3: [row["Quy đổi đơn vị tính cấp 3"]],
-            Theodoilo: [row["Theo dõi lô"] == 1],
-            IsTaiSan: [row["Là tài sản"] == 1],
-            Mota: [row["Mô tả"]],
-            ChiTietMoTa: [row["Mô tả chi tiết"]],
+            MaHang: [row['Mã hàng']],
+            TenMatHang: [row['Tên mặt hàng']],
+            IdLMH: [row['Loại mặt hàng']],
+            IdDVT: [row['Đơn vị tính']],
+            SoKyTinhKhauHaoToiThieu: [row['Số kỳ tính khấu hao tối thiểu']],
+            SoKyTinhKhauHaoToiDa: [row['Số kỳ tính khấu hao tối đa']],
+            TenOnSite: [row['Tên On Site']],
+            VAT: [row['VAT']],
+            GiaMua: [row['Giá mua']],
+            GiaBan: [row['Giá bán']],
+            UpperLimit: [row['Định mức tối thiểu']],
+            LowerLimit: [row['Định mức tối đa']],
+            IdDVTCap2: [row['Đơn vị tính cấp 2']],
+            QuyDoiDVTCap2: [row['Quy đổi đơn vị tính cấp 2']],
+            IdDVTCap3: [row['Đơn vị tính cấp 3']],
+            QuyDoiDVTCap3: [row['Quy đổi đơn vị tính cấp 3']],
+            Theodoilo: [row['Theo dõi lô'] == 1],
+            IsTaiSan: [row['Là tài sản'] == 1],
+            Mota: [row['Mô tả']],
+            ChiTietMoTa: [row['Mô tả chi tiết']],
           })
         );
       });
 
-        this.dataSource = new MatTableDataSource(this.products.value);
-        this.cd.detectChanges();
+      this.dataSource = new MatTableDataSource(this.products.value);
+      this.cd.detectChanges();
 
       console.log('✅ FormArray sau khi import:', this.products.value);
     };
@@ -126,36 +129,51 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
     reader.readAsArrayBuffer(this.selectedFile);
   }
 
-  loadData(){
-    if (this.products.length === 0){
-      this.layoutUtilsService.showError('Chưa import dữ liệu')
+  loadData() {
+    if (this.products.length === 0) {
+      this.layoutUtilsService.showActionNotification(
+        'Chưa import dữ liệu',
+        MessageType.Read,
+        4000,
+        true,
+        false,
+        3000,
+        'top',
+        0
+      );
+    } else {
+      this.listProductManagementService
+        .importProduct(this.products.value)
+        .subscribe((res) => {
+          if (res && res.status === 1) {
+            this.layoutUtilsService.showActionNotification(
+              'Thêm thành công',
+              MessageType.Create,
+              4000,
+              true,
+              false
+            );
+            this.listProductManagementService.fetch();
+          } else {
+            this.layoutUtilsService.showActionNotification(
+              res.error.message,
+              MessageType.Read,
+              4000,
+              true,
+              false,
+              3000,
+              'top',
+              0
+            );
+          }
+        });
     }
-    else{
-      this.listProductManagementService.importProduct(this.products.value).subscribe(res =>{
-        if (res && res.status === 1){
-          this.layoutUtilsService.showActionNotification(
-            'Thêm thành công',
-            MessageType.Create,
-            4000,
-            true,
-            false
-          );
-          this.listProductManagementService.fetch()
-        } 
-        else{
-          this.layoutUtilsService.showActionNotification(
-            res.error.message,
-            MessageType.Read,
-            4000,
-            true,
-            false,
-            3000,
-            'top',
-            0
-          );
-        }
-      })
-    }
+  }
+
+  delete(index: number){
+    this.products.removeAt(index)
+    this.dataSource = new MatTableDataSource(this.products.value);
+    this.cd.detectChanges();
   }
 
   ngOnInit(): void {}

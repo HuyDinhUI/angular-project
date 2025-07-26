@@ -50,6 +50,7 @@ export class ListProduceManagmentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.listProduceManagementService.fetch();
     this.listProduceManagementService.items$.subscribe((data) => {
+      this.itemIds = []
       data.forEach((element) => {
         this.itemIds.push(element.IdXuatXu);
       });

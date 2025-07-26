@@ -51,6 +51,7 @@ export class ListBrandManagmentComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.listBrandManagementService.fetch()
         this.listBrandManagementService.items$.subscribe(data => {
+            this.itemIds = []
             data.forEach(element => {
                 this.itemIds.push(element.IdNhanHieu)
             })

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -10,6 +11,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +23,12 @@ import { Router } from '@angular/router';
 export class ManagementUnitAddComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) {}
+  constructor(
+    private router: Router, 
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<ManagementUnitAddComponent>
+  ) {}
 
   ngOnInit(): void {
     this.loadForm();
@@ -51,7 +58,7 @@ export class ManagementUnitAddComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   goBack() {
-    this.router.navigate(['/management/category/listunit']);
+    this.dialogRef.close();
   }
 
   resetForm(){

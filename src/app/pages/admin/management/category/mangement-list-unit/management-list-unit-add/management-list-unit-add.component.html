@@ -1,34 +1,16 @@
 <div
-  class="position-absolute top-0 left-0 text-bg-light z-3 container-fluid py-3"
-  style="
-    height: 100%;
-    z-index: 999 !important;
-    border-radius: 6px;
-    background-color: white !important;
-  "
+  class="modal-content p-3"
 >
 <div
-    class="card-header d-flex justify-content-between"
-    style="padding: 10px !important"
+    class="modal-header d-flex py-2 border-bottom justify-content-between align-items-center"
+    
   >
-    <div class="card-title">
+    <div class="modal-title">
       <span class="fw-bold">THÊM MỚI ĐƠN VỊ TÍNH</span>
     </div>
-    <div class="card-toolbar">
-      <button (click)="goBack()" class="btn btn-secondary">
-        &xlarr; TRỞ VỀ
-      </button>
-      <button (click)="resetForm()" class="btn btn-secondary">
-        <i class="fa-solid fa-gear"></i>
-        ĐẶT LẠI
-      </button>
-      <button (click)="onSubmit()" class="btn btn-primary">
-        <i class="fa-solid fa-floppy-disk"></i>
-        LƯU
-      </button>
-    </div>
+    
   </div>
-  <div class="card-body" style="height: 300px; padding: 5px !important">
+  <div class="modal-body mt-3">
     <form [formGroup]="formGroup" class="form needs-validation" novalidate>
         <mat-form-field class="w-50"> 
             <mat-label>Tên đơn vị tính</mat-label>
@@ -45,5 +27,19 @@
         </mat-form-field>
     </form>
   </div>
-
+  <div class="modal-footer mt-5">
+    <div class="card-toolbar">
+      <button (click)="goBack()" class="btn btn-secondary">
+        &xlarr; TRỞ VỀ
+      </button>
+      <button (click)="resetForm()" class="btn btn-primary">
+        <i class="fa-solid fa-gear"></i>
+        Lưu và tiếp tục
+      </button>
+      <button (click)="onSubmit()" class="btn btn-primary">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Lưu và đóng
+      </button>
+    </div>
+  </div>
 </div>

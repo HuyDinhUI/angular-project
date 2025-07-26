@@ -6,10 +6,12 @@ import { showSearchFormModel } from '../../../_shared/jee-search-form/jee-search
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { ListUnittManagementService } from '../services/list-unit-management.service';
-import { LayoutUtilsService } from '../../../_core/utils/layout-utils.service';
+import { LayoutUtilsService, MessageType } from '../../../_core/utils/layout-utils.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
+import { ManagementAddProductComponent } from '../management-list-product/management-add-product/management-add-product.component';
+import { ManagementUnitAddComponent } from './management-list-unit-add/management-list-unit-add.component';
 
 @Component({
     selector: 'app-list-unit-management',
@@ -83,8 +85,28 @@ export class ListUnitManagmentComponent implements OnInit, OnDestroy {
   }
 
   add(){
-    this.router.navigate(['/management/category/listunit/add'],{
-      queryParams:{}
+    const saveMessage = 'THÊM THÀNH CÔNG'
+    const dialogRef = this.dialog.open(ManagementUnitAddComponent,{
+        data:{},
+        panelClass: 'custom-dialog',
+        maxWidth: 'none',
+        width: '900px',
+        disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((res)=>{
+        if(!res){
+            this.listUnitManagementService.fetch()
+
+        }else{
+            this.layoutUtilsService.showActionNotification(
+                saveMessage,
+                MessageType.Create,
+                4000,
+                true,
+                false
+            )
+            this.listUnitManagementService.fetch()
+        }
     })
   }
 }
