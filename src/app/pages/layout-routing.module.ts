@@ -22,6 +22,10 @@ const routes: Routes = [
         path:'management/category',
         loadChildren:() => import("./admin/management/category/category.module").then((m) => m.CategoryManagmentModel)
       },
+      {
+        path: 'management/user',
+        loadChildren:() => import("./admin/management/user/user.module").then((m) => m.UserManagmentModel)
+      },
 
       { path: '', redirectTo: 'management/category/listproduct', pathMatch: 'full' }
     ]

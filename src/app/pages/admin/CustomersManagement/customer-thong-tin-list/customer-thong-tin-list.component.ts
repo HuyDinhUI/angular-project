@@ -56,7 +56,7 @@ export class CustomerThongTinListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.idParam = this.route.snapshot.paramMap.get('id');
     const getCustomersb = this.customerThongTinService
-      .getCustomer(+this.idParam)
+      .getCustomer(+this.idParam) 
       .pipe(
         map((res: ResultObjModel<CustomerModelDTO>) => {
           if (res && res.status === 1) {

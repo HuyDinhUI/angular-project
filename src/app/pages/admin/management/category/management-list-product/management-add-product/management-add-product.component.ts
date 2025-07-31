@@ -48,8 +48,8 @@ export class ManagementAddProductComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  goBack() {
-    this.router.navigate(['/management/category/listproduct']);
+  goBack(): void {
+    window.history.back();
   }
 
   loadForm() {

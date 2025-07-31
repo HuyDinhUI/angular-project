@@ -1,0 +1,175 @@
+<div class="card card-custom gutter-br position-relative">
+  <div
+    class="card-header d-flex justify-content-between align-items-center"
+    style="padding: 10px 20px !important"
+  >
+    <div class="card-title">
+      <span class="fw-bold">QUẢN LÝ NGƯỜI DÙNG</span>
+    </div>
+  </div>
+  <div class="card-header" style="padding-bottom: 0 !important">
+    <div class="card-search">
+      <form class="d-flex gap-3 flex-wrap">
+        <mat-form-field class="w-50">
+          <mat-label>Tìm kiếm</mat-label>
+          <input matInput [formControl]="searchControl" type="text" />
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="card-body" style="padding:10px 0 !important;">
+    <div class="table-responsive angular-bootstrap-table" style="min-height: 250px;">
+      <table
+        mat-table
+        class="table table-styling table-head-custom overflow-hidden"
+        
+        [dataSource]="userManagementService.items$ | async"
+      >
+        <ng-container matColumnDef="RowId">
+          <thead>
+            <tr class="table-primary">
+              <th
+                *matHeaderCellDef
+                class="text-center"
+                
+              >
+                <span>ID</span>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td mat-cell *matCellDef="let r">
+              <div class="row text-center">
+                <span>{{ r.Id }}</span>
+              </div>
+            </td>
+          </tbody>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <thead>
+            <tr class="table-priamry">
+              <th
+                *matHeaderCellDef
+                class=""
+                
+              >
+                <span>Username</span>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td mat-cell *matCellDef="let r">
+              <div class="row">
+                <span>{{ r.Username }}</span>
+              </div>
+            </td>
+          </tbody>
+        </ng-container>
+
+        <ng-container matColumnDef="hoten">
+          <thead>
+            <tr class="table-priamry">
+              <th
+                *matHeaderCellDef
+                class=""
+                
+              >
+                <span>Họ tên</span>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td mat-cell *matCellDef="let r">
+              <div class="row">
+                <span>{{ r.FullName }}</span>
+              </div>
+            </td>
+          </tbody>
+        </ng-container>
+        <ng-container matColumnDef="dienthoai">
+          <thead>
+            <tr class="table-priamry">
+              <th
+                *matHeaderCellDef
+                class=""
+                
+              >
+                <span>Điện thoại</span>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td mat-cell *matCellDef="let r">
+              <div class="row">
+                <span>{{ r.Mobile }}</span>
+              </div>
+            </td>
+          </tbody>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <thead>
+            <tr class="table-priamry">
+              <th
+                *matHeaderCellDef
+                class=""
+                
+              >
+                <span>Email</span>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td mat-cell *matCellDef="let r">
+              <div class="row">
+                <span>{{ r.Email }}</span>
+              </div>
+            </td>
+          </tbody>
+        </ng-container>
+        <ng-container matColumnDef="thaotac">
+          <thead>
+            <tr class="table-priamry">
+              <th
+                *matHeaderCellDef
+                class=""
+                
+              >
+                <span>Tác vụ</span>
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <td mat-cell *matCellDef="let r">
+              <div class="">
+                <button
+                  [routerLink]="['permit/' + r.Username]"
+                  type="button"
+                  class="btn"
+                  style="margin-right: 0px !important"
+                >
+                  <i class="fa-solid fa-gear text-primary"></i>
+                </button>
+              </div>
+            </td>
+          </tbody>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <!-- <app-paginator
+      class="d-flex justify-content-between align-items-center flex-wrap"
+      [paginator]="paginator"
+      [isLoading]="isLoading"
+      
+    ></app-paginator> -->
+  </div>
+  <router-outlet></router-outlet>
+</div>

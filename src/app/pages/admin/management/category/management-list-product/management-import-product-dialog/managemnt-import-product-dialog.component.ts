@@ -123,7 +123,7 @@ export class ImportProductDialogComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource(this.products.value);
       this.cd.detectChanges();
 
-      console.log('✅ FormArray sau khi import:', this.products.value);
+      console.log('FormArray sau khi import:', this.products.value);
     };
 
     reader.readAsArrayBuffer(this.selectedFile);

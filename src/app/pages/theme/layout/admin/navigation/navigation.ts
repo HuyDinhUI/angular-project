@@ -85,4 +85,19 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   },
+  {
+    id: 'user',
+    title: 'Người dùng',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: 'user',
+        title: 'Quản lý người dùng',
+        type: 'item',
+        icon: 'icon-user',
+        url: '/management/user'
+      }
+    ]
+  }
 ];
