@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { PaginatorState, SortState } from "../../../../../_metronic/shared/crud-table";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { debounceTime, distinctUntilChanged, Subscription } from "rxjs";
 import { showSearchFormModel } from "../../../_shared/jee-search-form/jee-search-form.model";
 import { UserManagementService } from "../services/management-user-list.service";
 import { LayoutUtilsService } from "../../../_core/utils/layout-utils.service";
@@ -40,6 +40,20 @@ export class UserListManagementComponent implements OnInit,OnDestroy{
     ngOnInit(): void {
         this.userManagementService.fetch();
         
+        this.searchControl.valueChanges
+        .pipe(debounceTime(500), distinctUntilChanged())
+        .subscribe((val) => this.search(val))
+
+        this.paginator =this.userManagementService.paginator
+        
+    }
+
+    search(searchTerm: string){
+        this.userManagementService.patchState({searchTerm})
+    }
+
+    paginate(paginator: PaginatorState){
+        this.userManagementService.patchState({paginator})
     }
 
     ngOnDestroy(): void {

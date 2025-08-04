@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpUtilService } from '../../../_core/utils/http-utils.service';
 import { catchError, Observable } from 'rxjs';
 import { ResultModel, ResultObjModel } from '../../../_core/models/_base.model';
-import { PermitDTO } from '../model/permit-model.model';
+import { PermitDTO, PermitModel } from '../model/permit-model.model';
 
 const API_PRODUCTS_URL =
   environment.ApiRoot + '/usermanagement';
@@ -54,5 +54,10 @@ export class ListPermitManagementService
     })
   }
 
+  public updatePermit(permit: PermitModel[]): Observable<any>{
+    const httpHeaders = this.httpUtils.getHTTPHeaders();
+    const Url = API_PRODUCTS_URL
+    return this.http.put(Url,permit,{headers:httpHeaders})
+  }
   
 }
