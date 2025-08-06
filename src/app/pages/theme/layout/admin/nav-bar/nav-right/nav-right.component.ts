@@ -14,7 +14,8 @@ import { RouterModule } from '@angular/router';
   imports: [SharedModule,RouterModule],
   templateUrl: './nav-right.component.html',
   styleUrls: ['./nav-right.component.scss'],
-  providers: [NgbDropdownConfig]
+  providers: [NgbDropdownConfig],
+  standalone: true
 })
 export class NavRightComponent {
   // public props

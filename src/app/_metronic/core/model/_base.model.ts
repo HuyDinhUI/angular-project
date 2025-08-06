@@ -19,7 +19,7 @@ export class BaseModel implements IEdit, IFilter, ILog {
 
 export interface ResultModel<T> {
   Visible?: boolean;
-  data: T[];
+  data: T;
   error: ErrorModel;
   panigator?: PageModel;
   status: number;

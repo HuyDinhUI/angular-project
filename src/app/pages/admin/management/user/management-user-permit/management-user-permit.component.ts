@@ -41,6 +41,7 @@ export class UserPermitManagementComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.idParam = this.route.snapshot.paramMap.get('username');
         this.permitManagement.getListPermitByUsername(this.idParam).subscribe(res => {
+            console.log(res)
             this.fullname = res.data[0].fullname;
 
             res.data.forEach(item => {

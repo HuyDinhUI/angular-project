@@ -40,6 +40,8 @@ export class UserListManagementComponent implements OnInit,OnDestroy{
     ngOnInit(): void {
         this.userManagementService.fetch();
         
+        
+        
         this.searchControl.valueChanges
         .pipe(debounceTime(500), distinctUntilChanged())
         .subscribe((val) => this.search(val))

@@ -10,9 +10,11 @@ import { NavRightComponent } from './nav-right/nav-right.component';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [SharedModule, NavLeftComponent, NavRightComponent, RouterModule, CommonModule],
+  imports: [SharedModule, NavLeftComponent, NavRightComponent, RouterModule, CommonModule], 
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
+  standalone: true
+  
 })
 export class NavBarComponent {
   // public props

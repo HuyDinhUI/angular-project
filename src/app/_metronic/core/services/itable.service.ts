@@ -1,4 +1,4 @@
-import { ResultObjectModel } from '../model/_base.model';
+import { ResultModel, ResultObjectModel } from '../model/_base.model';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
@@ -22,6 +22,7 @@ export abstract class ITableService<T> {
   private _tableState$ = new BehaviorSubject<ITableState>(DEFAULT_STATE);
   private _errorMessage = new BehaviorSubject<string>('');
   private _subscriptions: Subscription[] = [];
+  public visible: boolean
 
   // Getters
   get items$() {
@@ -153,7 +154,8 @@ export abstract class ITableService<T> {
     this._errorMessage.next('');
     const request = this.find(this._tableState$.value)
       .pipe(
-        tap((res: ResultObjectModel<T>) => {
+        tap((res: ResultModel<T>) => {
+          this.visible = res.Visible
           this._items$.next(res.data);
           this.patchStateWithoutFetch({
             paginator: this._tableState$.value.paginator.recalculatePaginator(res.panigator.TotalCount),

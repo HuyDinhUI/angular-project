@@ -8,7 +8,8 @@ import { SharedModule } from '../../../../../shared/shared.module';
   selector: 'app-nav-search',
   imports: [SharedModule],
   templateUrl: './nav-search.component.html',
-  styleUrls: ['./nav-search.component.scss']
+  styleUrls: ['./nav-search.component.scss'],
+  standalone: true
 })
 export class NavSearchComponent {
   // public props

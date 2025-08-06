@@ -149,6 +149,7 @@
             <td mat-cell *matCellDef="let r">
               <div class="">
                 <button
+                *ngIf="userManagementService.visible" 
                   [routerLink]="['permit/' + r.Username]"
                   type="button"
                   class="btn"

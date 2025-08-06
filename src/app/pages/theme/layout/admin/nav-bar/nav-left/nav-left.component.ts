@@ -12,7 +12,8 @@ import screenfull from 'screenfull';
   selector: 'app-nav-left',
   imports: [SharedModule, NavSearchComponent],
   templateUrl: './nav-left.component.html',
-  styleUrls: ['./nav-left.component.scss']
+  styleUrls: ['./nav-left.component.scss'],
+  standalone: true
 })
 export class NavLeftComponent implements OnInit, OnDestroy {
   screenFull = true;
