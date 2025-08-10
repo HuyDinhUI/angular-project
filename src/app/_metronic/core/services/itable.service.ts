@@ -56,6 +56,9 @@ export abstract class ITableService<T> {
   get grouping() {
     return this._tableState$.value.grouping;
   }
+  get getLoading(){
+    return this._isLoading$.getValue()
+  }
 
   protected http: HttpClient;
   protected httpUtils: HttpUtilService;
@@ -71,6 +74,7 @@ export abstract class ITableService<T> {
 
   create(item: any): Observable<any> {
     this._isLoading$.next(true);
+    
     this._errorMessage.next('');
     return this.http.post<any>(this.API_URL_CTEATE, item).pipe(
       catchError((err) => {
@@ -184,8 +188,8 @@ export abstract class ITableService<T> {
     this.patchStateWithoutFetch({
       paginator: new PaginatorState(),
     });
-    this._isFirstLoading$.next(true);
-    this._isLoading$.next(true);
+    this._isFirstLoading$.next(false);
+    this._isLoading$.next(false);
     this._tableState$.next(DEFAULT_STATE);
     this._errorMessage.next('');
   }

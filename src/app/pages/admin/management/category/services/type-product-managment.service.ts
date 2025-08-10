@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpUtilService } from '../../../_core/utils/http-utils.service';
 import { Observable } from 'rxjs';
 import { ResultModel } from '../../../_core/models/_base.model';
-import { TypeProductsModelDTO } from '../model/type-product-managment.model';
+import { TypeProductsModel, TypeProductsModelDTO } from '../model/type-product-managment.model';
 
 const API_PRODUCTS_URL =
   environment.ApiRoot + '/categorymanagement/typeproduct';
@@ -52,5 +52,11 @@ export class TypeProductManagementService
     return this.http.get<any>(Url,{
         headers: httpHeaders
     })
+  }
+
+  public createTypeProduct(item: any): Observable<any>{
+    const httpHeaders = this.httpUtils.getHTTPHeaders();
+    const url = API_PRODUCTS_URL;
+    return this.http.post<any>(url, item, {headers:httpHeaders})
   }
 }

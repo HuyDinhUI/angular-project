@@ -236,8 +236,8 @@ export abstract class TableService<T> {
     this.patchStateWithoutFetch({
       paginator: new PaginatorState(),
     });
-    this._isFirstLoading$.next(true);
-    this._isLoading$.next(true);
+    this._isFirstLoading$.next(false);
+    this._isLoading$.next(false);
     this._tableState$.next(DEFAULT_STATE);
     this._errorMessage.next('');
   }

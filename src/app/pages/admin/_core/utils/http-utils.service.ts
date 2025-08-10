@@ -67,7 +67,6 @@ export class HttpUtilService {
     getHTTPHeaders(): HttpHeaders {
     const auth = this.auth.getAuthFromLocalStorage();
     let result = new HttpHeaders({
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${auth.token}`,
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': 'Content-Type',

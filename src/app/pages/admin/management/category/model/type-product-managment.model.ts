@@ -7,5 +7,9 @@ export interface TypeProductsModelDTO {
 }
 
 export class TypeProductsModel {
-  
+  TenLMH: string
+  LoaiMHC: number
+  DoUuTien: number
+  Mota: string
+  HinhAnh: File
 }
