@@ -1,5 +1,5 @@
 // angular import
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -11,16 +11,29 @@ import { SharedModule } from '../../../../../shared/shared.module';
   selector: 'app-nav-item',
   imports: [SharedModule, RouterModule],
   templateUrl: './nav-item.component.html',
-  styleUrls: ['./nav-item.component.scss']
+  styleUrls: ['./nav-item.component.scss'],
+  standalone: true
 })
-export class NavItemComponent {
+export class NavItemComponent implements OnInit {
   private location = inject(Location);
+  public permission: string[]
+  
 
   // public props
   item = input<NavigationItem>();
 
   // constructor
+  
+  constructor(){
+    
+  }
 
+  ngOnInit(): void {
+    this.permission = JSON.parse(localStorage.getItem('v717demo1-authf649fc9a5f55')).user.Role.split(",")
+    console.log(this.permission)
+  }
+
+  
   // public method
   closeOtherMenu(event: MouseEvent) {
     const ele = event.target as HTMLElement;

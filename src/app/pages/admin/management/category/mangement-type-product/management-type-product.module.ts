@@ -7,6 +7,7 @@ import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { TranslateModule } from "@ngx-translate/core";
 import { TypeProductManagementService } from "../services/type-product-managment.service";
 import { AddTypeProductManagementComponent } from "./management-type-product-add/management-type-product-add.component";
+import { AuthGuard } from "../../../../../modules/auth/_services/auth.guard";
 
 const routes:Routes = [
     {
@@ -14,6 +15,8 @@ const routes:Routes = [
         component: TypeProductManagmentComponent,
         children: [
             {
+                canActivate:[AuthGuard],
+                data:{requiredPermissions: ["3500"]},
                 path:'add',
                 component:AddTypeProductManagementComponent
             }

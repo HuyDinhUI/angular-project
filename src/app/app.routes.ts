@@ -9,13 +9,15 @@ export const routes: Routes = [
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'error',
+    loadChildren: () => import('./pages/error/error.module').then((m) => m.ErrorModule)
+  },
+  {
     path: '',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/layout.module').then((m) => m.LayoutModule),
   },
-  {
-    path: '**',
-    redirectTo: 'auth/login',
-  },
+  {path:'**',redirectTo:'error/404'}
+  
 ];

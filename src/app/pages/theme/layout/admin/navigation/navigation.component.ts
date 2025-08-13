@@ -10,7 +10,8 @@ import { NavContentComponent } from './nav-content/nav-content.component';
   selector: 'app-navigation',
   imports: [SharedModule, NavLogoComponent, NavContentComponent],
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  standalone: true
 })
 export class NavigationComponent {
   // public props

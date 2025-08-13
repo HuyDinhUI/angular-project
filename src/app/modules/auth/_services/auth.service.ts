@@ -22,7 +22,7 @@ export class AuthService implements OnDestroy {
   currentUserSubject: BehaviorSubject<User | null>;
   isLoadingSubject: BehaviorSubject<boolean>;
   errorMessageSubject: BehaviorSubject<string>;
-
+  private permission: string[] = [];
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
@@ -48,11 +48,18 @@ export class AuthService implements OnDestroy {
 
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map((loggedIn) => !loggedIn));
 
+    
+
     if (!this.getAuthFromLocalStorage()) {
       this.prepareLogout();
     } else {
       this.currentUserSubject.next(this.getAuthFromLocalStorage().user as User);
     }
+  }
+
+  userHasAnyPermission(codes: string[]): boolean {
+    this.permission = JSON.parse(localStorage.getItem('v717demo1-authf649fc9a5f55')).user.Role.split(",")
+    return codes.some(code => this.permission.includes(code));
   }
 
   login(username: string, password: string): Observable<User | undefined | boolean> {

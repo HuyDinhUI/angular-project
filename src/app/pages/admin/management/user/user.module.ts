@@ -10,6 +10,7 @@ import { UserListManagementComponent } from './management-user-list/management-u
 import { UserPermitManagementComponent } from './management-user-permit/management-user-permit.component';
 import { UserManagementService } from './services/management-user-list.service';
 import { ListPermitManagementService } from './services/management-user-permit.service';
+import { AuthGuard } from '../../../../modules/auth/_services/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,10 +18,14 @@ const routes: Routes = [
     component: UserManagementComponent,
     children: [
       {
+        canActivate:[AuthGuard],
+        data:{requiredPermissions: ["3900"]},
         path: '',
         component: UserListManagementComponent
       },
       {
+        canActivate:[AuthGuard],
+        data:{requiredPermissions: ["3900"]},
         path: 'permit/:username',
         component: UserPermitManagementComponent
       }

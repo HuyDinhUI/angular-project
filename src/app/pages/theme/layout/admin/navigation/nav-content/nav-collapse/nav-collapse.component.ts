@@ -14,6 +14,7 @@ import { NavItemComponent } from '../nav-item/nav-item.component';
   imports: [SharedModule, NavItemComponent, RouterModule, CommonModule],
   templateUrl: './nav-collapse.component.html',
   styleUrls: ['./nav-collapse.component.scss'],
+  standalone: true,
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
@@ -25,6 +26,7 @@ import { NavItemComponent } from '../nav-item/nav-item.component';
   ]
 })
 export class NavCollapseComponent {
+  
   // public props
   item = input<NavigationItem>();
   visible = false;

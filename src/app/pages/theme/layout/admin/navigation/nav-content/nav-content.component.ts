@@ -12,7 +12,8 @@ import { NavGroupComponent } from './nav-group/nav-group.component';
   selector: 'app-nav-content',
   imports: [SharedModule, NavGroupComponent],
   templateUrl: './nav-content.component.html',
-  styleUrls: ['./nav-content.component.scss']
+  styleUrls: ['./nav-content.component.scss'],
+  standalone: true
 })
 export class NavContentComponent {
   private location = inject(Location);

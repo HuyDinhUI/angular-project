@@ -9,7 +9,8 @@ import { SharedModule } from '../../../../shared/shared.module';
   selector: 'app-nav-logo',
   imports: [SharedModule, RouterModule],
   templateUrl: './nav-logo.component.html',
-  styleUrls: ['./nav-logo.component.scss']
+  styleUrls: ['./nav-logo.component.scss'],
+  standalone: true
 })
 export class NavLogoComponent {
   // public props

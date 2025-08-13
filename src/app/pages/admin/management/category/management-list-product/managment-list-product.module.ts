@@ -8,17 +8,22 @@ import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { TranslateModule } from "@ngx-translate/core";
 import { ListProductManagementService } from "../services/list-product-management.service";
 import { ManagementEditProductComponent } from "./management-edit-product-dialog/management-edit-product.component"
+import { AuthGuard } from "../../../../../modules/auth/_services/auth.guard";
 
 const routes: Routes = [
     {
         path: '',
         component: ListProudctManagmentComponent,
         children: [
-            {
+            {   
+                canActivate:[AuthGuard],
+                data:{requiredPermissions: ["3402"]},
                 path:'add',
                 component:ManagementAddProductComponent
             },
             {
+                canActivate:[AuthGuard],
+                data:{requiredPermissions: ["3402"]},
                 path: 'edit/:id',
                 component:ManagementEditProductComponent
             }

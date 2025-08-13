@@ -5,5 +5,5 @@ export const environment = {
   isMockEnabled: true,
   apiUrl: 'api',
   ApiRoot: 'http://localhost:5267/api',
-  ApiJeeAccount: 'https://localhost:5001/api', //P@sswordJ33Beginn3r
+  ApiJeeAccount: 'https://localhost:5001/api', //
 };

@@ -12,10 +12,11 @@ import { NavCollapseComponent } from '../nav-collapse/nav-collapse.component';
   selector: 'app-nav-group',
   imports: [SharedModule, NavItemComponent, NavCollapseComponent],
   templateUrl: './nav-group.component.html',
-  styleUrls: ['./nav-group.component.scss']
+  styleUrls: ['./nav-group.component.scss'],
+  standalone: true
 })
 export class NavGroupComponent implements OnInit {
-  private location = inject(Location);
+  private location = inject(Location);  
 
   // public props
   readonly item = input<NavigationItem>(undefined);

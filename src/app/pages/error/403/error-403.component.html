@@ -1,0 +1,114 @@
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900&display=swap");
+
+    /*font import from google fonts*/
+    body {
+        font-family: "Nunito", sans-serif;
+        transition: all 0.5s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .page-wrap {
+        height: 100vh;
+        padding: 30px 15px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+
+        .page-not-found {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+
+            .img-key {
+                margin-bottom: 0px;
+            }
+
+            h1.text-xl {
+                color: #000;
+
+                line-height: 50px;
+                font-size: 160px;
+                font-weight: 800;
+                letter-spacing: -15px;
+                text-shadow: -6px 4px 0px #fff;
+                margin-left: -20px;
+                margin-top: 50px;
+                margin-bottom: 50px;
+                width: 600px;
+
+                span {
+                    transition: all 1s ease;
+                    display: inline-block;
+                    animation: pulse 5s infinite;
+                }
+            }
+
+            h4.text-xl {
+                font-size: 50px;
+                width: 500px;
+                color: rgb(70, 141, 255)
+            }
+
+            h4.text-sm {
+                font-weight: 300;
+                font-size: 20px;
+                width: 500px;
+            }
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            color: #000;
+        }
+
+        50% {
+            color: rgba(240, 48, 48, 1);
+        }
+
+        100% {
+            color: #000;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .page-wrap {
+            .page-not-found {
+                h1.text-xl {
+                    font-size: 120px;
+                    letter-spacing: -20px;
+                    margin-bottom: 30px;
+                }
+            }
+        }
+    }
+</style>
+
+<div class="page-wrap">
+    <div class="page-not-found">
+        <h1 class="text-xl">
+            <span>O</span>
+            <span>o</span>
+            <span>p</span>
+            <span>s</span>
+            <span class="broken">!</span>
+        </h1>
+        <h4 class="text-xl mt-3">Access Forbidden</h4>
+        <h4 class="text-sm">Bạn không có quyền truy cập vào trang này</h4>
+        <a class="text-xl" href="#">&larr;</a>
+    </div>
+</div>
