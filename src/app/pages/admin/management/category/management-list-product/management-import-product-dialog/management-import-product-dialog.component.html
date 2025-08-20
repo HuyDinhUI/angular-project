@@ -33,11 +33,12 @@
     <!-- Table -->
 
     <div class="card-body mt-3">
-      <div class="table-responsive angular-bootstrap-table">
+      <div class="table-responsive angular-bootstrap-table overflow-y-auto" style="height: 300px;">
         <table
           mat-table
           class="table table-head-custom table-vertical-center overflow-hidden"
           [dataSource]="dataSource"
+          
         >
           <ng-container matColumnDef="#">
             <thead>

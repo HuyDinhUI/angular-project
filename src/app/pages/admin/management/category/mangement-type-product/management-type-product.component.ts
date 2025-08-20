@@ -85,6 +85,14 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
       : this.itemIds.forEach((row) => this.selection2.select(row));
   }
 
+  changeKeyword(val:any) {
+    this.search(val);
+  }
+
+  search(searchTerm: string) {
+    this.typeProductManagementService.patchState({ searchTerm });
+  }
+
   paginate(paginator: PaginatorState) {
     this.typeProductManagementService.patchState({ paginator });
   }

@@ -4,5 +4,5 @@ export interface UnitModelDTO {
 }
 
 export class UnitModel {
- 
+ TenDVT: string
 }

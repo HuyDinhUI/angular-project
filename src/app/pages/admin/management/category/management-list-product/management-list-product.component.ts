@@ -202,6 +202,10 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     }
   }
 
+  changeKeyword(val:any) {
+    this.search(val);
+  }
+
   search(searchTerm: string) {
     this.listProductManagementService.patchState({ searchTerm });
   }

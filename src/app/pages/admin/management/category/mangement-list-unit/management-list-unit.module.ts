@@ -7,6 +7,7 @@ import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { TranslateModule } from "@ngx-translate/core";
 import { ListUnittManagementService } from "../services/list-unit-management.service";
 import { ManagementUnitAddComponent } from "./management-list-unit-add/management-list-unit-add.component";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 const routes: Routes = [
     {
@@ -23,7 +24,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ListUnitManagmentComponent, ManagementUnitAddComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule, SearchForm],
     providers:[ListUnittManagementService],
     exports: [RouterModule]
 })

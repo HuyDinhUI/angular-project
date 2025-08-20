@@ -14,12 +14,17 @@
   </div>
   <div class="card-header" style="padding-bottom: 0 !important">
     <div class="card-search">
-      <form class="d-flex gap-3 flex-wrap">
+      <div class="w-50">
+        <app-search-form
+        (keywordEvent)="changeKeyword($event)"
+        />
+      </div>
+      <!-- <form class="d-flex gap-3 flex-wrap">
         <mat-form-field class="w-50">
           <mat-label>Tìm kiếm</mat-label>
           <input matInput type="text" />
         </mat-form-field>
-      </form>
+      </form> -->
     </div>
     <div class="card-toolbar ">
       <span>Số lượng đã chọn: {{selection2.selected.length}}</span>

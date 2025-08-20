@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { User, UserModel } from '../_models/user.model';
@@ -51,9 +51,22 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+
   submit() {
     this.hasError = false;
-    const loginSubscr = this.authService
+
+    if(this.loginForm.valid){
+       const loginSubscr = this.authService
       .login(this.f["username"].value, this.f["password"].value)
       .pipe(first())
       .subscribe((user) => {
@@ -64,7 +77,11 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.hasError = true;
         }
       });
-    this.unsubscribe.push(loginSubscr);
+      this.unsubscribe.push(loginSubscr);
+    }
+   
+    
+    this.validateAllFormFields(this.loginForm)
   }
 
   ngOnDestroy() {

@@ -14,6 +14,7 @@ import { ListBrandManagementService } from './services/list-brand-management.ser
 import { ListProduceManagementService } from './services/list-produce-management.service';
 import { ListUnittManagementService } from './services/list-unit-management.service';
 import { AuthGuard } from '../../../../modules/auth/_services/auth.guard';
+import { SearchForm } from '../../../../components/SearchComponent/SearchComponent.component';
 
 const routes: Routes = [
   {
@@ -60,7 +61,7 @@ const routes: Routes = [
       },
       {
         canActivate:[AuthGuard],
-        data:{requiredPermissions: ["3404"]},
+        data:{requiredPermissions: ["3406"]},
         path: 'produce',
         loadChildren: () => import('./management-list-produce/management-list-produce.module').then((m) => m.ListProduceManagementModule)
       },
@@ -78,7 +79,7 @@ const routes: Routes = [
       },
       {
         canActivate:[AuthGuard],
-        data:{requiredPermissions: ["3406"]},
+        data:{requiredPermissions: ["3404"]},
         path: 'brand',
         loadChildren: () => import('./management-list-brand/management-list-brand.module').then((m) => m.ListBrandManagementModule)
       },
@@ -96,6 +97,7 @@ const routes: Routes = [
     JeeCustomerModule,
     NgxMatSelectSearchModule,
     TranslateModule,
+    SearchForm
   ],
   providers: [
     ListProductManagementService,

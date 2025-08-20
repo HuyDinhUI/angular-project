@@ -4,6 +4,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatError } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -12,7 +13,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     AuthRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatError
   ]
 })
 export class AuthModule {}

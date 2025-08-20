@@ -16,7 +16,7 @@ import {
   LayoutUtilsService,
   MessageType,
 } from '../../../../_core/utils/layout-utils.service';
-import { ListProduceManagementService } from '../../services/list-produce-management.service';
+
 import { ListProductManagementService } from '../../services/list-product-management.service';
 
 @Component({

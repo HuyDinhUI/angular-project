@@ -8,6 +8,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { TypeProductManagementService } from "../services/type-product-managment.service";
 import { AddTypeProductManagementComponent } from "./management-type-product-add/management-type-product-add.component";
 import { AuthGuard } from "../../../../../modules/auth/_services/auth.guard";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 const routes:Routes = [
     {
@@ -28,7 +29,7 @@ const routes:Routes = [
 
 @NgModule({
     declarations: [TypeProductManagmentComponent,AddTypeProductManagementComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule, SearchForm],
     providers: [
         TypeProductManagementService
     ],

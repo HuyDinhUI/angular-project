@@ -20,31 +20,27 @@
         <div class="alert-text text-center">{{ authService.errorMessageSubject.asObservable() | async }}</div>
       </div>
     </ng-container>
-    <form
-      [formGroup]="loginForm"
-      novalidate="novalidate"
-      (ngSubmit)="submit()"
-      class="d-flex flex-column justify-content-center"
-    >
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="submit()"
+      class="d-flex flex-column justify-content-center needs-validation">
       <div class="">
-        <span class="">Username</span>
-        <input
-          type="text"
-          formControlName="username"
-          name="username"
-          required
-          class="form-control"
-        />
+        <span class="form-label">Username</span>
+        <input type="text" formControlName="username" name="username" required class="form-control" [classList]="" />
+        <mat-error *ngIf="
+              loginForm.get('username')?.touched &&
+              loginForm.get('username')?.invalid
+            " style="color: red;font-size:10px">
+          Trường này là bắt buộc
+        </mat-error>
       </div>
       <div class="my-2 relative">
         <span>Password</span>
-        <input
-          type="password"
-          formControlName="password"
-          name="password"
-          required
-          class="form-control"
-        />
+        <input type="password" formControlName="password" name="password" required class="form-control" />
+        <mat-error *ngIf="
+              loginForm.get('password')?.touched &&
+              loginForm.get('password')?.invalid
+            " style="color: red;font-size:10px">
+          Trường này là bắt buộc
+        </mat-error>
         <a class="text-muted mt-2 d-block mb-2"> Forgot password? </a>
       </div>
       <button type="submit" class="btn btn-primary m-0">Sign In</button>

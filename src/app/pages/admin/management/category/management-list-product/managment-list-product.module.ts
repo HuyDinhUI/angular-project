@@ -9,6 +9,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { ListProductManagementService } from "../services/list-product-management.service";
 import { ManagementEditProductComponent } from "./management-edit-product-dialog/management-edit-product.component"
 import { AuthGuard } from "../../../../../modules/auth/_services/auth.guard";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 const routes: Routes = [
     {
@@ -37,7 +38,7 @@ const routes: Routes = [
         ManagementAddProductComponent,
         ManagementEditProductComponent
     ],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule, SearchForm],
     providers: [
         ListProductManagementService
     ],
