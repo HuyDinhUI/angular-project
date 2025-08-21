@@ -76,6 +76,18 @@ export class ListBrandManagmentComponent implements OnInit, OnDestroy {
     return numSelected === numRows;
   }
 
+  changeKeyword(val: any) {
+    this.search(val);
+  }
+
+  search(searchTerm: string) {
+    this.listBrandManagementService.patchState({ searchTerm });
+  }
+
+   paginate(paginator: PaginatorState) {
+    this.listBrandManagementService.patchState({ paginator });
+  }
+
   masterToggle() {
     this.isAllSelected()
       ? this.selection2.clear()

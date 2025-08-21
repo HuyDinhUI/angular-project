@@ -11,6 +11,7 @@ import { ListInsuranceManagmentComponent } from "./managment-list-insurance.comp
 import { AddInsuranceDialogComponenet } from "./management-list-insurance-add-dialog/management-list-insurance-add-dialog.component";
 import { ListInsuranceManagementService } from "../services/list-insurance-managment.service";
 import { ImportInsuranceDialogComponent } from "./management-list-insurance-import-dialog/management-list-insurance-add-dialog.component";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 const routes: Routes = [
     {
@@ -22,7 +23,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ListInsuranceManagmentComponent, AddInsuranceDialogComponenet, ImportInsuranceDialogComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule,SearchForm],
     providers: [ListInsuranceManagementService],
     exports:[RouterModule]
 })

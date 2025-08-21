@@ -1,79 +1,81 @@
-import { Component,ChangeDetectionStrategy ,OnInit, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { GroupingState, PaginatorState, SortState } from '../../../../../_metronic/shared/crud-table';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { TypeProductManagementService } from '../services/type-product-managment.service';
 import { LayoutUtilsService } from '../../../_core/utils/layout-utils.service';
 import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
-    selector: 'app-type-product-management',
-    templateUrl:'./management-type-product.component.html',
-    standalone:false,
-    changeDetection:ChangeDetectionStrategy.OnPush
+  selector: 'app-type-product-management',
+  templateUrl: './management-type-product.component.html',
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TypeProductManagmentComponent implements OnInit, OnDestroy {
-    paginator: PaginatorState
-    sorting: SortState
-    grouping: GroupingState
-    isLoading: boolean
-    filterGroup: FormGroup
-    searchGroup: FormGroup
-    private subscriptions: Subscription[] = []
+  paginator: PaginatorState
+  sorting: SortState
+  grouping: GroupingState
+  isLoading: boolean
+  filterGroup: FormGroup
+  searchGroup: FormGroup
+  private subscriptions: Subscription[] = []
 
-    private subsriptions: Subscription[] = []
-    displayedColumns = [
-        'select',
-        '#',
-        'TenLoaiMH',
-        'LoaiMHC',
-        'DoUuTien',
-        'MoTa',
-        'ThaoTac'
-    ]
+  private subsriptions: Subscription[] = []
+  displayedColumns = [
+    'select',
+    '#',
+    'TenLoaiMH',
+    'LoaiMHC',
+    'DoUuTien',
+    'MoTa',
+    'ThaoTac'
+  ]
 
-    selection = new SelectionModel()
-    itemIds: number[]=[]
-    selection2 = new SelectionModel<number>(true,[])
+  selection = new SelectionModel()
+  itemIds: number[] = []
+  selection2 = new SelectionModel<number>(true, [])
 
-    constructor(
-        private router: Router,
-        private changeDetect: ChangeDetectorRef,
-        public typeProductManagementService: TypeProductManagementService,
-        private layoutUtilsService: LayoutUtilsService,
-        private danhmuc: DanhMucChungService,
-        private auth: AuthService,
-        private fb:FormBuilder
-    ){}
+  constructor(
+    private router: Router,
+    private changeDetect: ChangeDetectorRef,
+    public typeProductManagementService: TypeProductManagementService,
+    private layoutUtilsService: LayoutUtilsService,
+    private danhmuc: DanhMucChungService,
+    private auth: AuthService,
+    private fb: FormBuilder
+  ) { }
 
-    ngOnInit(): void {
-        this.typeProductManagementService.fetch()
+  ngOnInit(): void {
+    this.typeProductManagementService.fetch()
 
-        this.typeProductManagementService.items$.subscribe(data =>{
-            this.itemIds = []
-            data.forEach(element => {
-                this.itemIds.push(element.IdLMH)
-            })
-        })
+    this.typeProductManagementService.items$.subscribe(data => {
+      this.itemIds = []
+      data.forEach(element => {
+        this.itemIds.push(element.IdLMH)
+      })
+    })
 
-        this.grouping = this.typeProductManagementService.grouping
-        this.paginator = this.typeProductManagementService.paginator
-        this.sorting = this.typeProductManagementService.sorting
+    this.grouping = this.typeProductManagementService.grouping
+    this.paginator = this.typeProductManagementService.paginator
+    this.sorting = this.typeProductManagementService.sorting
 
-        const sb = this.typeProductManagementService.isLoading$.subscribe(
-            (res: any) => (this.isLoading = res)
-        )
-        this.subscriptions.push(sb)
-    }
+    const sb = this.typeProductManagementService.isLoading$.subscribe(
+      (res: any) => (this.isLoading = res)
+    )
+    this.subscriptions.push(sb)
+  }
 
-    ngOnDestroy(): void {
-        this.subsriptions.forEach((sb) => sb.unsubscribe())
-    }
+  ngOnDestroy(): void {
+    this.subsriptions.forEach((sb) => sb.unsubscribe())
+  }
 
-    isAllSelected() {
+  isAllSelected() {
     const numSelected = this.selection2.selected.length;
     const numRows = this.itemIds.length;
     return numSelected === numRows;
@@ -85,7 +87,7 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
       : this.itemIds.forEach((row) => this.selection2.select(row));
   }
 
-  changeKeyword(val:any) {
+  changeKeyword(val: any) {
     this.search(val);
   }
 
@@ -97,9 +99,24 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
     this.typeProductManagementService.patchState({ paginator });
   }
 
-  add(){
-    this.router.navigate(['/management/category/typeproduct/add'],{
-        queryParams:{}
+  add() {
+    this.router.navigate(['/management/category/typeproduct/add'], {
+      queryParams: {}
     })
+  }
+
+  async exportExcel() {
+    const items = await firstValueFrom(this.typeProductManagementService.items$);
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(items);
+
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Users');
+
+
+    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(data, 'users.xlsx');
+
   }
 }

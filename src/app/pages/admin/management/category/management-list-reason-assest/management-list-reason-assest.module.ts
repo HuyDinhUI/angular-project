@@ -12,6 +12,7 @@ import { ListReasonAssestManagmentComponent } from "./management-list-reason-ass
 import { ListReasonAssestManagementService } from "../services/list-reason-assest-management.service";
 import { AddReasonAssestDialogComponent } from "./management-reason-assest-add-dialog/reason-assest-add-dialog.component";
 import { ImportReasonAssestDialogComponent } from "./management-reason-assest-import-dialog/reason-assest-import.component";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ListReasonAssestManagmentComponent,AddReasonAssestDialogComponent,ImportReasonAssestDialogComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule,SearchForm],
     providers: [ListReasonAssestManagementService],
     exports:[RouterModule]
 })

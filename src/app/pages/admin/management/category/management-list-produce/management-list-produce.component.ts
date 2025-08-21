@@ -81,6 +81,18 @@ export class ListProduceManagmentComponent implements OnInit, OnDestroy {
       : this.itemIds.forEach((row) => this.selection2.select(row));
   }
 
+  changeKeyword(val: any) {
+    this.search(val);
+  }
+
+  search(searchTerm: string) {
+    this.listProduceManagementService.patchState({ searchTerm });
+  }
+
+  paginate(paginator: PaginatorState) {
+    this.listProduceManagementService.patchState({ paginator });
+  }
+
   add() {
     const saveMessage = 'THÊM THÀNH CÔNG';
     const messageType = MessageType.Create;

@@ -42,6 +42,7 @@ import { ListUnittManagementService } from '../services/list-unit-management.ser
 import { ListBrandManagementService } from '../services/list-brand-management.service';
 import { ListProduceManagementService } from '../services/list-produce-management.service';
 
+
 @Component({
   selector: 'app-list-product-management',
   templateUrl: './management-list-product.component.html',
@@ -86,7 +87,7 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     public danhmuc: DanhMucChungService,
     private auth: AuthService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.listProductManagementService.fetch();
@@ -99,11 +100,11 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
       this.itemIds = []
       data.forEach((element) => {
         this.itemIds.push(element.IdMH);
-        
+
       });
     });
 
-    
+
 
     this.searchControl.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
@@ -162,6 +163,8 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     });
   }
 
+  
+
   filterLoaiMatHang(value: number) {
     const filter = {};
     if (value == 0) {
@@ -202,7 +205,7 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeKeyword(val:any) {
+  changeKeyword(val: any) {
     this.search(val);
   }
 
@@ -220,8 +223,8 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     });
   }
 
-  edit(id: number){
-    this.router.navigate(['/management/category/listproduct/edit/'+ id])
+  edit(id: number) {
+    this.router.navigate(['/management/category/listproduct/edit/' + id])
   }
 
   deleteProduct(id: number) {
@@ -232,34 +235,34 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
     model.LstProductsDelete.push(id);
     dialog.afterClosed().subscribe((x) => {
       if (x) {
-        this.listProductManagementService.deleteProduct(model).subscribe((res) =>{
-          if (res && res.status === 1){
+        this.listProductManagementService.deleteProduct(model).subscribe((res) => {
+          if (res && res.status === 1) {
             this.layoutUtilsService.showActionNotification(
-            'Xóa thành công',
-            MessageType.Delete,
-            4000,
-            true,
-            false,
-          );
-          this.listProductManagementService.fetch()
-        } else {
-          this.layoutUtilsService.showActionNotification(
-            res.error.message,
-            MessageType.Read,
-            999999999,
-            true,
-            false,
-            3000,
-            'top',
-            0
-          );
+              'Xóa thành công',
+              MessageType.Delete,
+              4000,
+              true,
+              false,
+            );
+            this.listProductManagementService.fetch()
+          } else {
+            this.layoutUtilsService.showActionNotification(
+              res.error.message,
+              MessageType.Read,
+              999999999,
+              true,
+              false,
+              3000,
+              'top',
+              0
+            );
           }
         });
       }
     });
   }
 
-  deleteListProducts(){
+  deleteListProducts() {
     const message =
       'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
     const dialog = this.layoutUtilsService.deleteElement('', message);
@@ -269,28 +272,28 @@ export class ListProudctManagmentComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((x) => {
       if (x) {
-        this.listProductManagementService.deleteProduct(model).subscribe((res) =>{
-          if (res && res.status === 1){
+        this.listProductManagementService.deleteProduct(model).subscribe((res) => {
+          if (res && res.status === 1) {
             this.layoutUtilsService.showActionNotification(
-            'Xóa thành công',
-            MessageType.Delete,
-            4000,
-            true,
-            false,
-          );
-          this.selection2.clear()
-          this.listProductManagementService.fetch()
-        } else {
-          this.layoutUtilsService.showActionNotification(
-            res.error.message,
-            MessageType.Read,
-            999999999,
-            true,
-            false,
-            3000,
-            'top',
-            0
-          );
+              'Xóa thành công',
+              MessageType.Delete,
+              4000,
+              true,
+              false,
+            );
+            this.selection2.clear()
+            this.listProductManagementService.fetch()
+          } else {
+            this.layoutUtilsService.showActionNotification(
+              res.error.message,
+              MessageType.Read,
+              999999999,
+              true,
+              false,
+              3000,
+              'top',
+              0
+            );
           }
         });
       }

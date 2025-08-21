@@ -7,6 +7,7 @@ import { NgxMatSelectSearchModule } from "ngx-mat-select-search";
 import { TranslateModule } from "@ngx-translate/core";
 import { ListBrandManagementService } from "../services/list-brand-management.service";
 import { AddBrandDialogComponent } from "./management-list-brand-add-dialog/management-list-brand-add-dialog.component";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 const routes: Routes = [
     {
@@ -17,7 +18,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ListBrandManagmentComponent,AddBrandDialogComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule, SearchForm],
     providers:[ListBrandManagementService],
     exports: [RouterModule]
 })

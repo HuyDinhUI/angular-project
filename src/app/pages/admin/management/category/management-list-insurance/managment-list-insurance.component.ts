@@ -103,6 +103,18 @@ export class ListInsuranceManagmentComponent implements OnInit, OnDestroy {
     });
   }
 
+  changeKeyword(val: any) {
+    this.search(val);
+  }
+
+  search(searchTerm: string) {
+    this.listInsuranceManagementService.patchState({ searchTerm });
+  }
+
+  paginate(paginator: PaginatorState) {
+    this.listInsuranceManagementService.patchState({ paginator });
+  }
+
   import(){
     const saveMessage = 'IMPORT THÀNH CÔNG'
     const messageType = MessageType.Create;

@@ -12,6 +12,7 @@ import { ListGroupAssestManagmentComponent } from "./management-list-group-asses
 import { ListGroupTypeAssestManagementService } from "../services/list-group-type-management.service";
 import { AddGroupTypeAssestDialogComponent } from "./group-type-add-dialog/group-type-add-dialog.component";
 import { ImportGroupTypeAssestDialogComponent } from "./group-type-import-dialog/group-type-import-dialog.component";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ListGroupAssestManagmentComponent,AddGroupTypeAssestDialogComponent,ImportGroupTypeAssestDialogComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule, SearchForm],
     providers: [ListGroupTypeAssestManagementService],
     exports:[RouterModule]
 })

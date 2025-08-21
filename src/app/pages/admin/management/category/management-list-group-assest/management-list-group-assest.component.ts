@@ -76,6 +76,18 @@ export class ListGroupAssestManagmentComponent implements OnInit, OnDestroy {
       : this.itemIds.forEach((row) => this.selection2.select(row));
   }
 
+  changeKeyword(val: any) {
+    this.search(val);
+  }
+
+  search(searchTerm: string) {
+    this.listGroupTypeAssetManagementService.patchState({ searchTerm });
+  }
+
+  paginate(paginator: PaginatorState) {
+    this.listGroupTypeAssetManagementService.patchState({ paginator });
+  }
+
   add() {
     const saveMessage = 'THÊM THÀNH CÔNG';
     const messageType = MessageType.Create;

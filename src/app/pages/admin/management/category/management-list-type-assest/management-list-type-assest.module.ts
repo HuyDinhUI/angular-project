@@ -15,6 +15,7 @@ import { ListTypeAssestManagmentComponent } from "./management-list-type.compone
 import { AddTypeAssestDialogComponent } from "./management-list-type-assest-add-dialog/managment-list-type-assest-add-dialog.component";
 import { ImportTypeAssestDialogComponent } from "./management-list-type-assest-import-dialog/managment-list-type-assest-import-dialog.component";
 import { ListTypeAssestManagementService } from "../services/list-type-assest-management.service";
+import { SearchForm } from "../../../../../components/SearchComponent/SearchComponent.component";
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ListTypeAssestManagmentComponent,AddTypeAssestDialogComponent,ImportTypeAssestDialogComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule],
+    imports: [CommonModule, RouterModule.forChild(routes), JeeCustomerModule, NgxMatSelectSearchModule, TranslateModule,SearchForm],
     providers: [ListTypeAssestManagementService],
     exports:[RouterModule]
 })

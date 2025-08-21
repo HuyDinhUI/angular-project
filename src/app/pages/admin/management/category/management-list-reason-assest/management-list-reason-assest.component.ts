@@ -71,6 +71,18 @@ paginator: PaginatorState;
       : this.itemIds.forEach((row) => this.selection2.select(row));
   }
 
+  changeKeyword(val: any) {
+    this.search(val);
+  }
+
+  search(searchTerm: string) {
+    this.listReasonAssetManagementService.patchState({ searchTerm });
+  }
+
+  paginate(paginator: PaginatorState) {
+    this.listReasonAssetManagementService.patchState({ paginator });
+  }
+
   add() {
     const saveMessage = 'THÊM THÀNH CÔNG';
     const messageType = MessageType.Create;
