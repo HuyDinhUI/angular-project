@@ -6,3 +6,11 @@ export interface UnitModelDTO {
 export class UnitModel {
  TenDVT: string
 }
+
+export class ListUnitDeleteModel {
+  LstUnitDelete: number[]
+
+  constructor(){
+    this.LstUnitDelete = []
+  }
+}

@@ -21,7 +21,7 @@
     </div>
     <div class="card-toolbar ">
       <span>Số lượng đã chọn: {{selection2.selected.length}}</span>
-      <button class="btn btn-danger ms-2">Xóa đơn vị tính</button>
+      <button (click)="deleteListUnits()" class="btn btn-danger ms-2">Xóa đơn vị tính</button>
     </div>
   </div>
   <div class="row mt-2">
@@ -127,6 +127,7 @@
                   type="button"
                   class="btn"
                   style="margin-left: 0px !important; padding: 0 !important"
+                  (click)="deleteUnit(r.IdDVT)"
                 >
                   <i class="fa-solid fa-trash text-danger"></i>
                 </button>

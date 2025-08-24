@@ -5,11 +5,12 @@ import { firstValueFrom, Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { TypeProductManagementService } from '../services/type-product-managment.service';
-import { LayoutUtilsService } from '../../../_core/utils/layout-utils.service';
+import { LayoutUtilsService, MessageType } from '../../../_core/utils/layout-utils.service';
 import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { ListTypeDeleteModel } from '../model/type-product-managment.model';
 
 @Component({
   selector: 'app-type-product-management',
@@ -104,6 +105,79 @@ export class TypeProductManagmentComponent implements OnInit, OnDestroy {
       queryParams: {}
     })
   }
+
+  deleteProduct(id: number) {
+      const message =
+        'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
+      const dialog = this.layoutUtilsService.deleteElement('', message);
+      const model = new ListTypeDeleteModel();
+      model.LstTypeProductsDelete.push(id);
+      dialog.afterClosed().subscribe((x) => {
+        if (x) {
+          this.typeProductManagementService.deleteTypeProduct(model).subscribe((res) => {
+            if (res && res.status === 1) {
+              this.layoutUtilsService.showActionNotification(
+                'Xóa thành công',
+                MessageType.Delete,
+                4000,
+                true,
+                false,
+              );
+              this.typeProductManagementService.fetch()
+            } else {
+              this.layoutUtilsService.showActionNotification(
+                res.error.message,
+                MessageType.Read,
+                999999999,
+                true,
+                false,
+                3000,
+                'top',
+                0
+              );
+            }
+          });
+        }
+      });
+    }
+
+  deleteListProducts() {
+      const message =
+        'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
+      const dialog = this.layoutUtilsService.deleteElement('', message);
+      const model = new ListTypeDeleteModel();
+      console.log(this.selection2)
+      model.LstTypeProductsDelete = this.selection2.selected
+  
+      dialog.afterClosed().subscribe((x) => {
+        if (x) {
+          this.typeProductManagementService.deleteTypeProduct(model).subscribe((res) => {
+            if (res && res.status === 1) {
+              this.layoutUtilsService.showActionNotification(
+                'Xóa thành công',
+                MessageType.Delete,
+                4000,
+                true,
+                false,
+              );
+              this.selection2.clear()
+              this.typeProductManagementService.fetch()
+            } else {
+              this.layoutUtilsService.showActionNotification(
+                res.error.message,
+                MessageType.Read,
+                999999999,
+                true,
+                false,
+                3000,
+                'top',
+                0
+              );
+            }
+          });
+        }
+      });
+    }
 
   async exportExcel() {
     const items = await firstValueFrom(this.typeProductManagementService.items$);

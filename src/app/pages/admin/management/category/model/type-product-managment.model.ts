@@ -13,3 +13,11 @@ export class TypeProductsModel {
   Mota: string
   HinhAnh: File
 }
+
+export class ListTypeDeleteModel {
+  LstTypeProductsDelete: number[]
+
+  constructor(){
+    this.LstTypeProductsDelete = []
+  }
+}

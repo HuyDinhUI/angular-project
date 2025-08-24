@@ -13,7 +13,7 @@ import { HttpUtilService } from '../../../_core/utils/http-utils.service';
 import { Observable } from 'rxjs';
 import { ResultModel } from '../../../_core/models/_base.model';
 import { TypeProductsModelDTO } from '../model/type-product-managment.model';
-import { UnitModel, UnitModelDTO } from '../model/list-init-management.model';
+import { ListUnitDeleteModel, UnitModel, UnitModelDTO } from '../model/list-init-management.model';
 
 const API_PRODUCTS_URL =
   environment.ApiRoot + '/categorymanagement/listunit';
@@ -59,5 +59,11 @@ export class ListUnittManagementService
     const httpHeaders = this.httpUtils.getHTTPHeaders();
     const url = API_PRODUCTS_URL
     return this.http.post<any>(url, item, {headers:httpHeaders})
+  }
+
+  public deleteUnit(item: ListUnitDeleteModel): Observable<any>{
+    const httpHeaders = this.httpUtils.getHTTPHeaders();
+    const url = API_PRODUCTS_URL
+    return this.http.delete<any>(url, {headers: httpHeaders,body: item}) 
   }
 }

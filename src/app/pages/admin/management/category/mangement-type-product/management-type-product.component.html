@@ -28,7 +28,7 @@
     </div>
     <div class="card-toolbar ">
       <span>Số lượng đã chọn: {{selection2.selected.length}}</span>
-      <button class="btn btn-danger ms-2">Xóa loại mặt hàng</button>
+      <button (click)="deleteListProducts()" class="btn btn-danger ms-2">Xóa loại mặt hàng</button>
     </div>
   </div>
   <div class="row mt-2">
@@ -194,6 +194,7 @@
                   type="button"
                   class="btn"
                   style="margin-left: 0px !important; padding: 0 !important"
+                  (click)="deleteProduct(r.IdLMH)"
                 >
                   <i class="fa-solid fa-trash text-danger"></i>
                 </button>

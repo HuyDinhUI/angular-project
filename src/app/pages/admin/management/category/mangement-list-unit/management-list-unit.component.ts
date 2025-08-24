@@ -12,6 +12,7 @@ import { DanhMucChungService } from '../../../_core/services/danhmuc.service';
 import { AuthService } from '../../../../../modules/auth/_services/auth.service';
 import { ManagementAddProductComponent } from '../management-list-product/management-add-product/management-add-product.component';
 import { ManagementUnitAddComponent } from './management-list-unit-add/management-list-unit-add.component';
+import { ListUnitDeleteModel } from '../model/list-init-management.model';
 
 @Component({
     selector: 'app-list-unit-management',
@@ -95,6 +96,79 @@ export class ListUnitManagmentComponent implements OnInit, OnDestroy {
   paginate(paginator: PaginatorState) {
     this.listUnitManagementService.patchState({ paginator });
   }
+
+  deleteUnit(id: number) {
+        const message =
+          'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
+        const dialog = this.layoutUtilsService.deleteElement('', message);
+        const model = new ListUnitDeleteModel();
+        model.LstUnitDelete.push(id);
+        dialog.afterClosed().subscribe((x) => {
+          if (x) {
+            this.listUnitManagementService.deleteUnit(model).subscribe((res) => {
+              if (res && res.status === 1) {
+                this.layoutUtilsService.showActionNotification(
+                  'Xóa thành công',
+                  MessageType.Delete,
+                  4000,
+                  true,
+                  false,
+                );
+                this.listUnitManagementService.fetch()
+              } else {
+                this.layoutUtilsService.showActionNotification(
+                  res.error.message,
+                  MessageType.Read,
+                  999999999,
+                  true,
+                  false,
+                  3000,
+                  'top',
+                  0
+                );
+              }
+            });
+          }
+        });
+      }
+  
+    deleteListUnits() {
+        const message =
+          'Bạn có muốn xóa sản phẩm này không? Lưu ý: Quá trình xóa không thể hoàn tác.';
+        const dialog = this.layoutUtilsService.deleteElement('', message);
+        const model = new ListUnitDeleteModel();
+        console.log(this.selection2)
+        model.LstUnitDelete = this.selection2.selected
+    
+        dialog.afterClosed().subscribe((x) => {
+          if (x) {
+            this.listUnitManagementService.deleteUnit(model).subscribe((res) => {
+              if (res && res.status === 1) {
+                this.layoutUtilsService.showActionNotification(
+                  'Xóa thành công',
+                  MessageType.Delete,
+                  4000,
+                  true,
+                  false,
+                );
+                this.selection2.clear()
+                this.listUnitManagementService.fetch()
+              } else {
+                this.layoutUtilsService.showActionNotification(
+                  res.error.message,
+                  MessageType.Read,
+                  999999999,
+                  true,
+                  false,
+                  3000,
+                  'top',
+                  0
+                );
+              }
+            });
+          }
+        });
+      }
 
   add(){
     const saveMessage = 'THÊM THÀNH CÔNG'
